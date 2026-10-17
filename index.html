@@ -548,6 +548,76 @@
       scroll-margin-top: 5.5rem;
     }
 
+
+    /* Responsive Header & Mobile Compatibility Rules */
+    .header-btn {
+      padding: 0.4rem 0.62rem !important;
+      font-size: 0.72rem !important;
+      line-height: 1.35 !important;
+      border-radius: 8px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+    @media (min-width: 640px) {
+      .header-btn {
+        padding: 0.55rem 1rem !important;
+        font-size: 0.82rem !important;
+        border-radius: 10px !important;
+      }
+    }
+
+    .mode-switch-btn {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+    .mode-switch-btn.active {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+      box-shadow: 0 4px 12px -2px rgba(20, 110, 245, 0.3);
+    }
+    .mode-switch-btn:not(.active):hover {
+      border-color: var(--navy);
+      color: var(--navy);
+      background: #F8FAFC;
+    }
+
+    .mobile-only { display: inline; }
+    .desktop-only { display: none; }
+    @media (min-width: 640px) {
+      .mobile-only { display: none !important; }
+      .desktop-only { display: inline !important; }
+      .sm\:w-auto { width: auto !important; }
+      .sm\:inline-flex { display: inline-flex !important; }
+      .sm\:flex-initial { flex: 0 1 auto !important; }
+    }
+    @media (max-width: 639px) {
+      .mobile-stack-btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .editorial-card {
+        border-radius: 12px;
+      }
+      #toast-container {
+        left: 1rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+      }
+    }
+
     /* Print Stylesheet for 100% Vector Arabic PDF Export */
     @page {
       size: A4 portrait;
@@ -648,42 +718,58 @@
     </div>
   </div>
 
-  <!-- Top Navigation Bar -->
+  <!-- Top Navigation Bar (100% Responsive Across Mobile, Tablet & Desktop) -->
   <header class="sticky top-0 z-40 bg-[#F5F6F8] border-b border-[#E5E7EB] no-print">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+    <div class="max-w-6xl mx-auto px-3.5 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2">
       <!-- Brand Identity -->
-      <div class="flex items-center gap-3">
-        <a href="#top" class="w-10 h-10 rounded-lg bg-[#071A33] text-white font-en font-extrabold text-base flex items-center justify-center flex-shrink-0">
+      <a href="#top" id="nav-brand-top" class="flex items-center gap-2.5 flex-1" style="min-width: 0;">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#071A33] text-white font-en font-extrabold text-sm sm:text-base flex items-center justify-center flex-shrink-0" dir="ltr">
           HA.
-        </a>
-        <div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="font-bold text-[#071A33] text-sm sm:text-base">حسن علي</span>
-            <span class="hidden sm:inline-block text-xs font-en font-semibold text-[#146EF5] bg-[#146EF5]/10 px-2 py-0.5 rounded" dir="ltr">HA / STRATEGY</span>
-          </div>
-          <p class="text-[11px] text-[#667085] m-0">خبير التسويق الاستراتيجي · المدير التنفيذي لشركة Sun Media</p>
         </div>
-      </div>
+        <div style="min-width: 0;">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-[#071A33] text-sm sm:text-base whitespace-nowrap" style="line-height: 1.35;">حسن علي</span>
+            <span class="hidden sm:inline-block text-[11px] font-en font-semibold text-[#146EF5] bg-[#146EF5]/10 px-2 py-0.5 rounded whitespace-nowrap" dir="ltr">HA / STRATEGY</span>
+          </div>
+          <p class="text-[11px] text-[#667085] m-0 whitespace-nowrap overflow-hidden" style="text-overflow: ellipsis; line-height: 1.35;">
+            <span class="mobile-only">خبير التسويق الاستراتيجي</span>
+            <span class="desktop-only">خبير التسويق الاستراتيجي · المدير التنفيذي لشركة Sun Media</span>
+          </p>
+        </div>
+      </a>
 
-      <!-- Nav Links -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#667085]">
-        <a href="#methodology-section">المنهجية</a>
-        <a href="#audit-workspace">أداة التشخيص</a>
-        <a href="#results-section" id="nav-results-link" class="hidden">التقرير والنتيجة</a>
-        <a href="https://www.hassanalielzayat.site/" target="_blank" rel="noopener noreferrer" class="text-[#146EF5] font-en text-xs font-semibold" dir="ltr">PORTFOLIO ↗</a>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#667085] flex-shrink-0">
+        <a href="#methodology-section" id="nav-methodology-link" class="hover:text-[#071A33] whitespace-nowrap">المنهجية</a>
+        <a href="#audit-workspace" id="nav-audit-link" class="hover:text-[#071A33] whitespace-nowrap">أداة التشخيص</a>
+        <a href="#results-section" id="nav-results-link" class="hover:text-[#071A33] whitespace-nowrap hidden">التقرير والنتيجة</a>
+        <a href="https://www.hassanalielzayat.site/" target="_blank" rel="noopener noreferrer" class="text-[#146EF5] font-semibold text-xs whitespace-nowrap">البورتفوليو ↗</a>
       </nav>
 
-      <!-- Direct CTA -->
-      <div class="flex items-center gap-2">
-        <button type="button" id="btn-demo-fill" class="btn-secondary py-2 px-3 text-xs sm:text-sm" title="ملء بيانات تجريبية لمعاينة التقرير فوراً">
-          <span>تجربة سريعة</span>
+      <!-- Direct CTA Buttons (Compact on mobile, never wrap or overflow) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <button type="button" id="btn-demo-fill" class="btn-secondary header-btn hidden sm:inline-flex" title="ملء بيانات تجريبية لمعاينة التقرير فوراً">
+          <span class="desktop-only">تجربة سريعة</span>
+          <span class="mobile-only">تجربة</span>
           <span class="font-en text-[#146EF5] font-bold" dir="ltr">DEMO</span>
         </button>
-        <a href="https://wa.me/201221359590?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%AD%D8%B3%D9%86%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%D9%8A%D8%AC%D9%8A%D8%A9" target="_blank" rel="noopener noreferrer" class="btn-primary py-2 px-3.5 text-xs sm:text-sm">
+        <a href="https://wa.me/201221359590?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%AD%D8%B3%D9%86%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%D9%8A%D8%AC%D9%8A%D8%A9" target="_blank" rel="noopener noreferrer" class="btn-primary header-btn">
           <span>تواصل معايا</span>
           <span class="font-en" dir="ltr">↙</span>
         </a>
       </div>
+    </div>
+
+    <!-- Mobile Quick Navigation Bar (Visible on phones/small tablets) -->
+    <div class="md:hidden bg-white border-t border-[#E5E7EB] px-3.5 py-1.5 flex items-center justify-between gap-2 overflow-x-auto text-xs font-semibold text-[#667085]">
+      <div class="flex items-center gap-3 whitespace-nowrap">
+        <a href="#audit-workspace" id="mob-nav-audit" class="text-[#071A33] font-bold">ابدأ التشخيص</a>
+        <span>·</span>
+        <a href="#methodology-section" id="mob-nav-method" class="hover:text-[#071A33]">المنهجية</a>
+        <span>·</span>
+        <a href="#results-section" id="mob-nav-results" class="text-[#20A464] font-bold">النتيجة والتقرير</a>
+      </div>
+      <a href="https://www.hassanalielzayat.site/" target="_blank" rel="noopener noreferrer" class="text-[#146EF5] font-bold whitespace-nowrap flex-shrink-0">البورتفوليو ↗</a>
     </div>
   </header>
 
@@ -717,11 +803,11 @@
             </p>
 
             <div class="flex flex-wrap items-center gap-3 pt-2">
-              <a href="#audit-workspace" class="btn-primary text-sm">
+              <button type="button" id="btn-start-audit" class="btn-primary text-sm mobile-stack-btn">
                 <span>ابدأ تشخيص صفحتك الآن</span>
                 <span class="font-en" dir="ltr">↙</span>
-              </a>
-              <button type="button" id="btn-hero-demo" class="btn-secondary text-sm">
+              </button>
+              <button type="button" id="btn-hero-demo" class="btn-secondary text-sm mobile-stack-btn">
                 <span>معاينة نموذج تقرير جاهز</span>
               </button>
             </div>
@@ -816,19 +902,19 @@
 
     <!-- PROMINENT VIEW SWITCHER BAR -->
     <section id="view-switcher-bar" class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 no-print">
-      <div class="bg-[#071A33] text-white p-4 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-4">
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <button type="button" id="tab-view-questions" class="btn-primary text-xs sm:text-sm py-2 px-4">
+      <div class="bg-[#071A33] text-white p-3.5 sm:p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+          <button type="button" id="tab-view-questions" class="btn-primary text-xs sm:text-sm py-2.5 px-4 mobile-stack-btn">
             <span>1. أسئلة تشخيص الصفحة (15 سؤالاً)</span>
           </button>
-          <button type="button" id="tab-view-results" class="btn-green text-xs sm:text-sm py-2 px-4">
+          <button type="button" id="tab-view-results" class="btn-green text-xs sm:text-sm py-2.5 px-4 mobile-stack-btn">
             <span>2. عرض النتيجة وتقرير الـ PDF الشامل</span>
-            <span id="tab-results-score-badge" class="font-en font-extrabold bg-white text-[#071A33] px-2.5 py-0.5 rounded text-xs" dir="ltr">جاهز</span>
+            <span id="tab-results-score-badge" class="font-en font-extrabold bg-white text-[#071A33] px-2.5 py-0.5 rounded text-xs whitespace-nowrap" dir="ltr">جاهز</span>
           </button>
         </div>
-        <div class="flex items-center gap-2.5 text-xs text-slate-300 flex-wrap">
+        <div class="flex items-center justify-between sm:justify-end gap-2 text-xs text-slate-300 pt-2.5 sm:pt-0 border-t border-slate-800 sm:border-0">
           <span>تريد رؤية النتيجة فوراً؟</span>
-          <button type="button" id="btn-bar-demo" class="text-xs font-bold text-[#071A33] bg-white px-3 py-1.5 rounded-lg cursor-pointer border-0">
+          <button type="button" id="btn-bar-demo" class="text-xs font-bold text-[#071A33] bg-white px-3 py-1.5 rounded-lg cursor-pointer border-0 whitespace-nowrap">
             تجربة نتيجة جاهزة (DEMO) ↙
           </button>
         </div>
@@ -898,17 +984,20 @@
 
           <!-- Pillar Navigation & Mode Switcher -->
           <div class="editorial-card p-4 sm:p-5">
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <div class="flex items-center gap-2.5 flex-wrap">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+              <div class="flex flex-wrap items-center justify-between sm:justify-start gap-2">
                 <span class="eyebrow-tag" dir="ltr">04 / DIAGNOSTIC QUESTIONS</span>
                 <span id="progress-badge-text" class="text-xs font-bold text-[#071A33] bg-[#F5F6F8] px-3 py-1 rounded-full border border-[#E5E7EB]">
                   تمت الإجابة على 0 من 15
                 </span>
               </div>
 
-              <div class="flex items-center gap-3 flex-wrap">
-                <button type="button" id="btn-toggle-view-mode" class="text-xs font-semibold text-[#146EF5] px-2 py-1" style="background:transparent;border:none;cursor:pointer;">
-                  عرض جميع الأسئلة في صفحة واحدة
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" id="btn-mode-all" class="mode-switch-btn active" title="الوضع الأساسي: عرض جميع الـ 15 سؤالاً في صفحة واحدة">
+                  <span>عرض جميع الأسئلة (صفحة واحدة)</span>
+                </button>
+                <button type="button" id="btn-mode-pillars" class="mode-switch-btn" title="الوضع الثانوي: عرض كل محور بشكل منفصل">
+                  <span>عرض كل محور منفصلاً</span>
                 </button>
                 <button type="button" id="btn-reset-audit" class="text-xs font-semibold text-[#667085] px-2 py-1" style="background:transparent;border:none;cursor:pointer;">
                   إعادة تعيين
@@ -923,13 +1012,13 @@
 
             <!-- Pillar Tabs -->
             <div id="pillar-tabs-container" class="flex items-center gap-2 overflow-x-auto pb-1">
-              <button type="button" data-pillar-idx="0" class="pillar-tab active"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">01</span><span>التموضع والهوية</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-slate-800 text-slate-200" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="1" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">02</span><span>استراتيجية المحتوى</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="2" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">03</span><span>الجمهور والتفاعل</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="3" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">04</span><span>الحملات والعروض</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="4" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">05</span><span>التحويل والقياس</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button>
+              <button type="button" data-pillar-idx="0" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">01</span><span>التموضع والهوية</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="1" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">02</span><span>استراتيجية المحتوى</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="2" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">03</span><span>الجمهور والتفاعل</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="3" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">04</span><span>الحملات والعروض</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="4" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">05</span><span>التحويل والقياس</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button>
             </div>
           </div>
 
           <!-- Questions Container -->
           <div id="questions-container" class="space-y-5">
-            <div class="space-y-4"><div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">01 / POSITIONING</span><h2 class="text-base sm:text-lg font-bold text-white mb-1">التموضع والهوية البصرية وعرض القيمة</h2><p class="text-xs text-slate-300 m-0">هل يفهم الزائر الجديد من تخدم، وما القيمة التي تقدمها، ولماذا يختارك خلال ثوانٍ؟</p></div><span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">20 نقطة كحد أقصى</span></div><div id="question-card-q1" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 01 / 15</span><span class="en-badge" dir="ltr">Value Proposition &amp; Bio</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">وضوح عرض القيمة في الوصف والغلاف</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">عندما يدخل عميل جديد إلى صفحتك لأول مرة، هل يستطيع فهم ما تقدمه ولمن وما الذي يميزك في جملة واحدة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q1" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">غير واضح</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">الوصف فارغ أو يحتوي على عبارات عامة جداً دون توضيح طبيعة الخدمة أو الميزة التنافسية.</p></div></button><button type="button" data-qid="q1" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">يذكر النشاط فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نذكر اسم المجال أو المنتجات فقط دون توضيح لماذا يجب على العميل اختيارنا بدلاً من المنافسين.</p></div></button><button type="button" data-qid="q1" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">واضح جزئياً</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">الرسالة واضحة في الوصف ولكن صورة الغلاف والمنشور المثبت لا يدعمان نفس التموضع.</p></div></button><button type="button" data-qid="q1" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">واضح ومترابط تماماً</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">الوصف والغلاف والمنشور المثبت يوضحون بدقة من نخدم، القيمة المقدمة، وسبب الثقة بنا.</p></div></button></div></div><div id="question-card-q2" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 02 / 15</span><span class="en-badge" dir="ltr">Brand Visual Consistency</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">اتساق الهوية البصرية وتصميمات الصفحة</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل تعكس صورة الحساب، الغلاف، وتصميمات المنشورات هوية بصرية متماسكة يسهل التعرف عليها؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q2" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">عشوائية بدون هوية</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">التصميمات مختلفة في الألوان والخطوط في كل منشور ولا يوجد طابع بصري موحد للعلامة.</p></div></button><button type="button" data-qid="q2" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">توحيد بسيط غير مستمر</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نضع الشعار على الصور فقط، لكن الألوان والخطوط تتغير باستمرار حسب المصمم.</p></div></button><button type="button" data-qid="q2" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">هوية جيدة بأخطاء بسيطة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">توجد ألوان وخطوط محددة في أغلب المنشورات، لكنها تحتاج إلى تطوير لتعكس قيمة أعلى.</p></div></button><button type="button" data-qid="q2" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">هوية احترافية مميزة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">بمجرد رؤية المنشور يتعرف العميل على علامتنا فوراً بفضل تماسك الألوان والخطوط.</p></div></button></div></div><div id="question-card-q3" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 03 / 15</span><span class="en-badge" dir="ltr">CTA &amp; Trust Signals</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">جاهزية نقاط التحويل وإشارات الثقة</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل زر الإجراء الأساسي، بيانات الاتصال، والمنشور المثبت يوجهون الزائر لخطوة واضحة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q3" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">بيانات ناقصة أو قديمة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">بعض بيانات التواصل غير محدثة، ولا يوجد منشور مثبت أو زر إجراء واضح.</p></div></button><button type="button" data-qid="q3" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">موجودة بدون توجيه</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">البيانات الأساسية موجودة، لكن لا يوجد منشور مثبت يشرح رحلة العميل أو كيفية الطلب.</p></div></button><button type="button" data-qid="q3" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">مكتملة وتحتاج تحسين</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">البيانات والزر مفعّلون، لكن المنشور المثبت قديم أو لا يعكس أقوى عرض حالي لدينا.</p></div></button><button type="button" data-qid="q3" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">مُحسّنة بالكامل للتحويل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">كل زائر يجد بيانات مكتملة، زر تواصل مباشر، ومنشوراً مثبتاً يقوده بسلاسة لاتخاذ قرار.</p></div></button></div></div></div>
+            <div class="space-y-4"><div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">01 / POSITIONING</span><h2 class="text-base sm:text-lg font-bold text-white mb-1">التموضع والهوية البصرية وعرض القيمة</h2><p class="text-xs text-slate-300 m-0">هل يفهم الزائر الجديد من تخدم، وما القيمة التي تقدمها، ولماذا يختارك خلال ثوانٍ؟</p></div><span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">20 نقطة كحد أقصى</span></div><div id="question-card-q1" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 01 / 15</span><span class="en-badge" dir="ltr">Value Proposition &amp; Bio</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">وضوح عرض القيمة في الوصف والغلاف</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">عندما يدخل عميل جديد إلى صفحتك لأول مرة، هل يستطيع فهم ما تقدمه ولمن وما الذي يميزك في جملة واحدة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q1" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">غير واضح</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">الوصف فارغ أو يحتوي على عبارات عامة جداً دون توضيح طبيعة الخدمة أو الميزة التنافسية.</p></div></button><button type="button" data-qid="q1" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">يذكر النشاط فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نذكر اسم المجال أو المنتجات فقط دون توضيح لماذا يجب على العميل اختيارنا بدلاً من المنافسين.</p></div></button><button type="button" data-qid="q1" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">واضح جزئياً</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">الرسالة واضحة في الوصف ولكن صورة الغلاف والمنشور المثبت لا يدعمان نفس التموضع.</p></div></button><button type="button" data-qid="q1" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">واضح ومترابط تماماً</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">الوصف والغلاف والمنشور المثبت يوضحون بدقة من نخدم، القيمة المقدمة، وسبب الثقة بنا.</p></div></button></div></div><div id="question-card-q2" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 02 / 15</span><span class="en-badge" dir="ltr">Brand Visual Consistency</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">اتساق الهوية البصرية وتصميمات الصفحة</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل تعكس صورة الحساب، الغلاف، وتصميمات المنشورات هوية بصرية متماسكة يسهل التعرف عليها؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q2" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">عشوائية بدون هوية</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">التصميمات مختلفة في الألوان والخطوط في كل منشور ولا يوجد طابع بصري موحد للعلامة.</p></div></button><button type="button" data-qid="q2" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">توحيد بسيط غير مستمر</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نضع الشعار على الصور فقط، لكن الألوان والخطوط تتغير باستمرار حسب المصمم.</p></div></button><button type="button" data-qid="q2" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">هوية جيدة بأخطاء بسيطة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">توجد ألوان وخطوط محددة في أغلب المنشورات، لكنها تحتاج إلى تطوير لتعكس قيمة أعلى.</p></div></button><button type="button" data-qid="q2" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">هوية احترافية مميزة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">بمجرد رؤية المنشور يتعرف العميل على علامتنا فوراً بفضل تماسك الألوان والخطوط.</p></div></button></div></div><div id="question-card-q3" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 03 / 15</span><span class="en-badge" dir="ltr">CTA &amp; Trust Signals</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">جاهزية نقاط التحويل وإشارات الثقة</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل زر الإجراء الأساسي، بيانات الاتصال، والمنشور المثبت يوجهون الزائر لخطوة واضحة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q3" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">بيانات ناقصة أو قديمة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">بعض بيانات التواصل غير محدثة، ولا يوجد منشور مثبت أو زر إجراء واضح.</p></div></button><button type="button" data-qid="q3" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">موجودة بدون توجيه</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">البيانات الأساسية موجودة، لكن لا يوجد منشور مثبت يشرح رحلة العميل أو كيفية الطلب.</p></div></button><button type="button" data-qid="q3" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">مكتملة وتحتاج تحسين</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">البيانات والزر مفعّلون، لكن المنشور المثبت قديم أو لا يعكس أقوى عرض حالي لدينا.</p></div></button><button type="button" data-qid="q3" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">مُحسّنة بالكامل للتحويل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">كل زائر يجد بيانات مكتملة، زر تواصل مباشر، ومنشوراً مثبتاً يقوده بسلاسة لاتخاذ قرار.</p></div></button></div></div></div><div class="space-y-4"><div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">02 / CONTENT STRATEGY</span><h2 class="text-base sm:text-lg font-bold text-white mb-1">استراتيجية المحتوى واتجاه التواصل</h2><p class="text-xs text-slate-300 m-0">هل يبني المحتوى علامة تجارية ويقرب العميل من الشراء، أم يضيف منشورات متفرقة فقط؟</p></div><span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">20 نقطة كحد أقصى</span></div><div id="question-card-q4" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 04 / 15</span><span class="en-badge" dir="ltr">Brand vs. Activity</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">ارتباط المحتوى بأهداف العمل ومشاكل العميل</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">على أي أساس يتم اختيار موضوعات المنشورات على صفحتك حالياً؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q4" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نشر عشوائي عند التفرغ</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">ننشر ما يتاح أمامنا من صور منتجات أو عروض دون خطة أو هدف تسويقي محدد.</p></div></button><button type="button" data-qid="q4" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تركيز بيعي مباشر فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">أغلب المنشورات عبارة عن دعوات شراء ومواصفات المنتج دون معالجة مخاوف العميل أو بناء ثقة.</p></div></button><button type="button" data-qid="q4" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">محتوى متنوع لكن غير مترابط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">ننشر نصائح وعروضاً جيدة، لكن لا يوجد خيط استراتيجي يربط المحتوى برحلة اتخاذ القرار.</p></div></button><button type="button" data-qid="q4" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">محتوى استراتيجي موجه للنتائج</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">كل قطعة محتوى تخدم تموضع العلامة، تجيب عن أسئلة العميل الحقيقية، وتمهد للبيع بذكاء.</p></div></button></div></div><div id="question-card-q5" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 05 / 15</span><span class="en-badge" dir="ltr">Content Pillars &amp; Video</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">تنوع أركان وقوالب المحتوى والفيديو</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">إلى أي مدى تتنوع أشكال المحتوى بين تعليمي، دراسات حالة وآراء عملاء، عروض، وفيديوهات قصيرة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q5" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">قالب واحد مكرر</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">نعتمد على صور ثابتة متشابهة فقط دون استخدام الفيديوهات أو قصص نجاح العملاء.</p></div></button><button type="button" data-qid="q5" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تنوع محدود</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">ننشر صوراً وبعض النصوص، ونادراً ما نشارك فيديوهات أو تجارب عملاء حقيقية.</p></div></button><button type="button" data-qid="q5" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تنوع جيد بدون إثبات كافٍ</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">نستخدم الصور والفيديوهات القصيرة، لكننا نحتاج إلى إبراز نتائج العملاء ودراسات الحالة بشكل أقوى.</p></div></button><button type="button" data-qid="q5" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">منظومة محتوى متكاملة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">توازن مدروس بين المحتوى القيمي، الفيديوهات، إثبات الكفاءة، والعروض التسويقية.</p></div></button></div></div><div id="question-card-q6" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 06 / 15</span><span class="en-badge" dir="ltr">Editorial Calendar</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">الانتظام والتخطيط المسبق للنشر</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل تلتزم الصفحة بجدول نشر منتظم ومخطط مسبقاً؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q6" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">انقطاع طويل وغير منتظم</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">قد تمر أسابيع دون نشر ثم ننشر عدة منشورات في يوم واحد.</p></div></button><button type="button" data-qid="q6" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نشر أسبوعي بدون خطة مسبقة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نحاول النشر كل فترة، لكن يتم تحضير المنشور في نفس اليوم دون تخطيط شهري.</p></div></button><button type="button" data-qid="q6" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">خطة نصف شهرية</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">نخطط المحتوى لعدة أيام قادمة ونلتزم بالنشر في أغلب الأوقات.</p></div></button><button type="button" data-qid="q6" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">التزام كامل بخطة استراتيجية</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">لدينا خطة محتوى شهرية واضحة ومعتمدة مسبقاً تربط المواسم بالعروض والرسائل.</p></div></button></div></div></div><div class="space-y-4"><div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">03 / AUDIENCE &amp; COMMUNITY</span><h2 class="text-base sm:text-lg font-bold text-white mb-1">فهم الجمهور والتفاعل وبناء الثقة</h2><p class="text-xs text-slate-300 m-0">هل تصل إلى العميل الأنسب وتبني معه علاقة ثقة تدفعه للشراء والترشيح؟</p></div><span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">20 نقطة كحد أقصى</span></div><div id="question-card-q7" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 07 / 15</span><span class="en-badge" dir="ltr">Ideal Customer Fit</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">تطابق المتابعين مع العميل الأنسب</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل المتابعون الحاليون لصفحتك يمثلون الشريحة القادرة والمهتمة فعلياً بالشراء منك؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q7" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">جمهور غير مستهدف</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">أغلب المتابعين جاءوا من مسابقات أو إعلانات عامة أو شراء متابعين ولا يشترون.</p></div></button><button type="button" data-qid="q7" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تطابق ضعيف</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">يوجد متابعون كثر ولكن معظمهم يبحث عن أسعار رخيصة جداً لا تناسب قيمة ما نقدمه.</p></div></button><button type="button" data-qid="q7" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تطابق متوسط إلى جيد</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">جزء جيد من الجمهور مناسب، لكننا نحتاج للوصول إلى شرائح أكثر قدرة على الشراء.</p></div></button><button type="button" data-qid="q7" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">جمهور نوعي ومستهدف بدقة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">متابعو الصفحة هم فعلاً صناع القرار والعملاء المستهدفون في سوقنا.</p></div></button></div></div><div id="question-card-q8" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 08 / 15</span><span class="en-badge" dir="ltr">Quality of Engagement</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">جودة التفاعل العضوي والحقيقي</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">كيف يبدو شكل التفاعل على منشورات الصفحة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q8" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">شبه منعدم</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">المنشورات تحصل على إعجابات قليلة جداً ولا توجد تعليقات أو مشاركات حقيقية.</p></div></button><button type="button" data-qid="q8" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">إعجابات سطحية فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نحصل على بعض الإعجابات، لكن نادراً ما يسأل أحد عن التفاصيل أو يشارك المحتوى.</p></div></button><button type="button" data-qid="q8" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">استفسارات على العروض فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">التفاعل يظهر فقط عند نشر خصومات أو إعلانات ممولة، ويقل في المحتوى العادي.</p></div></button><button type="button" data-qid="q8" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نقاشات، استفسارات ومشاركات مستمرة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">الجمهور يتفاعل، يحفظ المنشورات، يطرح أسئلة شرائية، ويشارك المحتوى مع غيره.</p></div></button></div></div><div id="question-card-q9" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 09 / 15</span><span class="en-badge" dir="ltr">Community Management</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">إدارة التعليقات وبناء الثقة العلنية</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">كيف تتعامل الصفحة مع التعليقات والاستفسارات أو الملاحظات أمام الزوار؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q9" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تأخر أو تجاهل للتعليقات</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">كثير من التعليقات تظل بدون رد لفترات طويلة مما يضعف ثقة الزائر الجديد.</p></div></button><button type="button" data-qid="q9" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">ردود آلية مكررة فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نكتفي بكتابة تم الرد في الرسائل على كل التعليقات دون تقديم إجابة مفيدة علناً.</p></div></button><button type="button" data-qid="q9" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">ردود جيدة لكن غير منتظمة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">نرد بشكل لطيف، لكن أحياناً نتأخر أو لا نستثمر التعليقات الإيجابية لإبراز الثقة.</p></div></button><button type="button" data-qid="q9" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">إدارة مجتمع احترافية تبني الثقة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">نرد بسرعة ولباقة، نوضح القيمة علناً، ونتعامل مع أي ملاحظة بشفافية تزيد المصداقية.</p></div></button></div></div></div><div class="space-y-4"><div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">04 / CAMPAIGNS &amp; FUNNEL</span><h2 class="text-base sm:text-lg font-bold text-white mb-1">الحملات الإعلانية وتطوير العروض</h2><p class="text-xs text-slate-300 m-0">هل تمتلك عروضاً قوية وحملات مبنية على رحلة العميل أم تعتمد على ترويج عشوائي؟</p></div><span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">20 نقطة كحد أقصى</span></div><div id="question-card-q10" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 10 / 15</span><span class="en-badge" dir="ltr">Offer Architecture</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">قوة وتنافسية العروض التسويقية</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">ما مدى جاذبية ووضوح العروض التي تقدمها الصفحة لدفع العميل للشراء الآن؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q10" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">لا توجد عروض مصممة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">نعرض المنتجات أو الخدمات بشكل تقليدي دون باقات، ضمانات، أو حافز واضح للشراء.</p></div></button><button type="button" data-qid="q10" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">حرق أسعار وخصومات فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">طريقتنا الوحيدة لجذب العملاء هي خفض السعر مما يقلل هامش الربح ويضعف صورة العلامة.</p></div></button><button type="button" data-qid="q10" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">عروض جيدة تحتاج صياغة أقوى</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">لدينا خدمات ممتازة، لكن طريقة تقديم العرض لا تبرز القيمة الكاملة مقارنة بالسعر.</p></div></button><button type="button" data-qid="q10" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">عروض استراتيجية لا تُقاوم</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">عروضنا مصممة بذكاء، واضحة القيمة، ومرتبطة باحتياج العميل الفعلي مع محفزات قرار قوية.</p></div></button></div></div><div id="question-card-q11" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 11 / 15</span><span class="en-badge" dir="ltr">Campaign Funnel Structure</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">هيكلة الحملات الإعلانية الممولة</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">كيف تخطط وتدير الإعلانات الممولة لصفحتك على فيسبوك؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q11" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">بدون إعلانات أو ترويج عشوائي</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">لا نعلن بانتظام، أو نضغط زر ترويج المنشور المباشر دون إعدادات استهداف دقيقة.</p></div></button><button type="button" data-qid="q11" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">حملة واحدة للجمهور البارد فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نشغل إعلانات رسائل مباشرة للجمهور الجديد فقط دون إعادة استهداف من تفاعل معنا.</p></div></button><button type="button" data-qid="q11" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">حملات منتظمة بدون تنويع إبداعي</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">نستخدم مدير الإعلانات، لكن نعتمد على إعلان واحد أو اثنين لفترات طويلة حتى يقل الأداء.</p></div></button><button type="button" data-qid="q11" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نظام حملات متكامل متعدد المراحل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">ندير حملات جذب، إقناع، وإعادة استهداف مترابطة مع اختبار مستمر للرسائل والجمهور.</p></div></button></div></div><div id="question-card-q12" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 12 / 15</span><span class="en-badge" dir="ltr">Message-to-Market Match</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">ترابط الرسالة بين الإعلان وتجربة العميل</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">عندما يضغط العميل على إعلانك أو منشورك، هل يجد تجربة متوافقة ومكملة لنفس الوعد؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q12" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">فجوة كبيرة وتشتيت للعميل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">العميل يضغط على الإعلان فلا يجد تفاصيل واضحة أو يضطر لشرح طلبه من الصفر في الرسائل.</p></div></button><button type="button" data-qid="q12" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">ترابط ضعيف</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">الإعلان يتحدث عن عرض معين، بينما الصفحة أو الرد التلقائي يتحدث بشكل عام عن الشركة.</p></div></button><button type="button" data-qid="q12" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">ترابط جيد في أغلب الحملات</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">العميل يفهم العرض عند التواصل، لكن خطوات إتمام الطلب تحتاج إلى تبسيط أكثر.</p></div></button><button type="button" data-qid="q12" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">رحلة عميل سلسة ومترابطة بالكامل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">من لحظة رؤية الإعلان وحتى التحدث مع المبيعات، يشعر العميل بتجربة متسقة وسريعة.</p></div></button></div></div></div><div class="space-y-4"><div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">05 / CONVERSION &amp; MEASUREMENT</span><h2 class="text-base sm:text-lg font-bold text-white mb-1">تحويل الرسائل إلى مبيعات والقياس والتحسين</h2><p class="text-xs text-slate-300 m-0">هل تتحول الرسائل والاستفسارات إلى مبيعات حقيقية وهل تقيس الأثر التجاري بدقة؟</p></div><span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">20 نقطة كحد أقصى</span></div><div id="question-card-q13" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 13 / 15</span><span class="en-badge" dir="ltr">Inbox Sales Process</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">سرعة واحترافية البيع عبر الرسائل</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">كيف يتم التعامل مع الرسائل الواردة والاستفسارات عن السعر داخل صندوق رسائل الصفحة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q13" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">رد متأخر ومختصر بالسعر فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">نرد بعد ساعات بذكر السعر فقط، وغالباً يختفي العميل بعدها دون شراء.</p></div></button><button type="button" data-qid="q13" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">رد سريع لكن بدون منهجية بيع</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نرد بسرعة، لكن المحادثة تنتهي عند إرسال قائمة الأسعار دون قيادة العميل للخطوة التالية.</p></div></button><button type="button" data-qid="q13" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">منهجية جيدة وتحتاج أتمتة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">فريقنا يرد بشكل جيد، لكن الضغط الكبير يسبب تأخراً أحياناً في أوقات الذروة.</p></div></button><button type="button" data-qid="q13" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نظام مبيعات محترف وعالي التحويل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">استجابة فورية، أسئلة لتشخيص احتياج العميل، عرض قيمة مقنع، وإغلاق بيعي احترافي.</p></div></button></div></div><div id="question-card-q14" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 14 / 15</span><span class="en-badge" dir="ltr">Lead Nurturing &amp; CRM</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">متابعة العملاء المحتملين وإعادة التواصل</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">ماذا يحدث للعملاء الذين تواصلوا مع الصفحة وسألوا عن الخدمة لكنهم لم يشتروا فوراً؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q14" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تُترك المحادثات وتضيع الفرص</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">لا نسجل بياناتهم ولا نعاود التواصل معهم أبداً بعد انتهاء المحادثة الأولى.</p></div></button><button type="button" data-qid="q14" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">متابعة عشوائية غير منتظمة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نتذكر بعض العملاء أحياناً فنراسلهم، لكن لا يوجد نظام لتصنيف المهتمين ومتابعتهم.</p></div></button><button type="button" data-qid="q14" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">تسجيل البيانات بدون خطة إعادة تنشيط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">نحتفظ بأرقام وبيانات المهتمين، لكن نادراً ما نرسل لهم عروضاً مخصصة لإغلاق البيع.</p></div></button><button type="button" data-qid="q14" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نظام متابعة وتصنيف متكامل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">كل عميل محتمل يتم تصنيفه ومتابعته بشكل منهجي عبر الرسائل أو الواتساب حتى إتمام البيع.</p></div></button></div></div><div id="question-card-q15" class="editorial-card question-card-item p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 15 / 15</span><span class="en-badge" dir="ltr">Impact vs. Vanity Metrics</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">قياس الأثر التجاري ومؤشرات الأداء</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">ما هي الأرقام التي تتابعها لتقييم نجاح صفحتك على فيسبوك؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q15" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">لا نتابع أرقاماً واضحة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">نعمل بالانطباع العام دون مراجعة تقارير الأداء أو معرفة تكلفة الحصول على عميل.</p></div></button><button type="button" data-qid="q15" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نتابع الإعجابات والمشاهدات فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نركز على عدد الإعجابات والمتابعين دون ربطها بعدد العملاء الفعليين أو الإيرادات.</p></div></button><button type="button" data-qid="q15" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">نحسب تكلفة الإعلان والرسائل فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">نعرف كم صرفنا وكم رسالة وصلت، لكن لا نربط ذلك بدقة بصافي المبيعات والربحية.</p></div></button><button type="button" data-qid="q15" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">قياس شامل للأثر والعائد التجاري</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">نتابع رحلة العميل رقمياً من الانطباع الأول وحتى تكلفة الاكتساب وصافي المبيعات المحققة.</p></div></button></div></div></div>
           </div>
 
           <!-- Step Navigation Footer -->
@@ -946,7 +1035,7 @@
               <button type="button" id="btn-next-pillar" class="btn-primary text-sm">
                 <span>المحور التالي ←</span>
               </button>
-              <button type="button" id="btn-generate-report" class="btn-green text-sm hidden">
+              <button type="button" id="btn-generate-report" class="btn-green text-sm mobile-stack-btn">
                 <span>إصدار التقرير وتحميل الـ PDF</span>
                 <span class="font-en" dir="ltr">↙</span>
               </button>
@@ -1017,15 +1106,15 @@
           <p class="text-xs text-slate-300 mt-1 m-0">يمكنك تحميل التقرير مباشرة بصيغة PDF أو طباعته، أو التواصل مباشرة مع أ. حسن علي لبدء خطة العمل.</p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
-          <button type="button" id="btn-download-pdf" class="btn-primary text-sm flex-1">
+        <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
+          <button type="button" id="btn-download-pdf" class="btn-primary text-sm mobile-stack-btn">
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             <span id="btn-download-pdf-text">تحميل التقرير الشامل (PDF)</span>
           </button>
-          <button type="button" id="btn-print-pdf" class="btn-secondary text-sm">
+          <button type="button" id="btn-print-pdf" class="btn-secondary text-sm mobile-stack-btn">
             <span>طباعة / حفظ كـ PDF</span>
           </button>
-          <button type="button" id="btn-edit-answers" class="btn-secondary text-xs">
+          <button type="button" id="btn-edit-answers" class="btn-secondary text-xs mobile-stack-btn">
             <span>← تعديل الإجابات</span>
           </button>
         </div>
@@ -1572,7 +1661,7 @@
 
     const state = {
       activePillarIndex: 0,
-      showAllQuestions: false,
+      showAllQuestions: true,
       answers: {},
       pageName: '',
       clientName: '',
@@ -1645,11 +1734,17 @@
     }
 
     function updateToggleViewButtonText() {
-      const btn = document.getElementById('btn-toggle-view-mode');
-      if (!btn) return;
-      btn.textContent = state.showAllQuestions
-        ? 'عرض محور واحد في كل خطوة'
-        : 'عرض جميع الأسئلة في صفحة واحدة';
+      const btnAll = document.getElementById('btn-mode-all');
+      const btnPillars = document.getElementById('btn-mode-pillars');
+      if (btnAll && btnPillars) {
+        if (state.showAllQuestions) {
+          btnAll.classList.add('active');
+          btnPillars.classList.remove('active');
+        } else {
+          btnAll.classList.remove('active');
+          btnPillars.classList.add('active');
+        }
+      }
     }
 
     function renderPillarTabs() {
@@ -1772,8 +1867,10 @@
         cards[j].addEventListener('click', function () {
           const qid = this.getAttribute('data-qid');
           const score = parseInt(this.getAttribute('data-score'), 10);
+          const prevScrollY = window.pageYOffset;
           state.answers[qid] = score;
           renderWorkspace();
+          window.scrollTo(0, prevScrollY);
           const currentMetrics = calculateAuditMetrics();
           const tabScoreBadge = document.getElementById('tab-results-score-badge');
           if (tabScoreBadge) {
@@ -1791,7 +1888,7 @@
             if (nextCard && state.answers[nextQid] === undefined) {
               setTimeout(function () {
                 const rect = nextCard.getBoundingClientRect();
-                const targetY = window.pageYOffset + rect.top - 88;
+                const targetY = window.pageYOffset + rect.top - 108;
                 window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
               }, 120);
             } else {
@@ -2161,8 +2258,8 @@
         navResLink.classList.remove('hidden');
       }
       if (tabQ && tabR) {
-        tabQ.className = 'btn-secondary text-xs sm:text-sm py-2 px-4';
-        tabR.className = 'btn-green text-xs sm:text-sm py-2 px-4';
+        tabQ.className = 'btn-secondary text-xs sm:text-sm py-2.5 px-4 mobile-stack-btn';
+        tabR.className = 'btn-green text-xs sm:text-sm py-2.5 px-4 mobile-stack-btn';
       }
       const switcherEl = document.getElementById('view-switcher-bar');
       if (switcherEl) {
@@ -2176,7 +2273,7 @@
       const qContainer = document.getElementById('questions-container');
       if (!qContainer) return;
       const firstCard = qContainer.querySelector('.question-card-item') || qContainer;
-      const headerOffset = 88;
+      const headerOffset = 108;
       const rect = firstCard.getBoundingClientRect();
       const targetY = window.pageYOffset + rect.top - headerOffset;
       window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
@@ -2266,12 +2363,22 @@
         });
       }
 
-      const toggleBtn = document.getElementById('btn-toggle-view-mode');
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', function () {
-          state.showAllQuestions = !state.showAllQuestions;
+      const btnModeAll = document.getElementById('btn-mode-all');
+      if (btnModeAll) {
+        btnModeAll.addEventListener('click', function () {
+          state.showAllQuestions = true;
           updateToggleViewButtonText();
           renderWorkspace();
+        });
+      }
+
+      const btnModePillars = document.getElementById('btn-mode-pillars');
+      if (btnModePillars) {
+        btnModePillars.addEventListener('click', function () {
+          state.showAllQuestions = false;
+          updateToggleViewButtonText();
+          renderWorkspace();
+          scrollToQuestionsStart();
         });
       }
 
@@ -2295,6 +2402,8 @@
 
       const demoBtn1 = document.getElementById('btn-demo-fill');
       if (demoBtn1) demoBtn1.addEventListener('click', loadDemoAuditData);
+      const mobDemoBtn = document.getElementById('mob-nav-demo');
+      if (mobDemoBtn) mobDemoBtn.addEventListener('click', loadDemoAuditData);
 
       const demoBtn2 = document.getElementById('btn-hero-demo');
       if (demoBtn2) demoBtn2.addEventListener('click', loadDemoAuditData);
@@ -2305,7 +2414,7 @@
       const prtPdfBtn = document.getElementById('btn-print-pdf');
       if (prtPdfBtn) prtPdfBtn.addEventListener('click', function () { window.print(); });
 
-      function showQuestionsView() {
+      function showQuestionsView(shouldScroll) {
         const resultsSec = document.getElementById('results-section');
         const workspaceSec = document.getElementById('audit-workspace');
         const methodSec = document.getElementById('methodology-section');
@@ -2315,11 +2424,13 @@
         if (methodSec) methodSec.classList.remove('hidden');
         if (resultsSec) resultsSec.classList.add('hidden');
         if (tabQ && tabR) {
-          tabQ.className = 'btn-primary text-xs sm:text-sm py-2 px-4';
-          tabR.className = 'btn-secondary text-xs sm:text-sm py-2 px-4';
+          tabQ.className = 'btn-primary text-xs sm:text-sm py-2.5 px-4 mobile-stack-btn';
+          tabR.className = 'btn-secondary text-xs sm:text-sm py-2.5 px-4 mobile-stack-btn';
         }
-        const switcherEl = document.getElementById('view-switcher-bar');
-        if (switcherEl) switcherEl.scrollIntoView({ behavior: 'auto', block: 'start' });
+        if (shouldScroll !== false) {
+          const switcherEl = document.getElementById('view-switcher-bar');
+          if (switcherEl) switcherEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
 
       const editBtn = document.getElementById('btn-edit-answers');
@@ -2342,9 +2453,80 @@
         barDemoBtn.addEventListener('click', loadDemoAuditData);
       }
 
+      function startOrFocusAudit(e) {
+        if (e) e.preventDefault();
+        showQuestionsView(false);
+        setTimeout(function () {
+          const wsEl = document.getElementById('audit-workspace');
+          if (wsEl) {
+            const rect = wsEl.getBoundingClientRect();
+            const targetY = window.pageYOffset + rect.top - 96;
+            window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+          }
+          const pageInput = document.getElementById('input-page-name');
+          if (pageInput && !pageInput.value) {
+            pageInput.focus({ preventScroll: true });
+          }
+        }, 60);
+      }
+
+      const startAuditBtn = document.getElementById('btn-start-audit');
+      if (startAuditBtn) {
+        startAuditBtn.addEventListener('click', startOrFocusAudit);
+      }
+
+      const navAuditEl = document.getElementById('nav-audit-link');
+      if (navAuditEl) {
+        navAuditEl.addEventListener('click', startOrFocusAudit);
+      }
+
+      const mobNavAuditEl = document.getElementById('mob-nav-audit');
+      if (mobNavAuditEl) {
+        mobNavAuditEl.addEventListener('click', startOrFocusAudit);
+      }
+
+      function scrollToMethodology(e) {
+        if (e) e.preventDefault();
+        showQuestionsView(false);
+        setTimeout(function () {
+          const methEl = document.getElementById('methodology-section');
+          if (methEl) {
+            const rect = methEl.getBoundingClientRect();
+            const targetY = window.pageYOffset + rect.top - 96;
+            window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+          }
+        }, 60);
+      }
+
+      const navMethEl = document.getElementById('nav-methodology-link');
+      if (navMethEl) {
+        navMethEl.addEventListener('click', scrollToMethodology);
+      }
+
+      const mobNavMethEl = document.getElementById('mob-nav-method');
+      if (mobNavMethEl) {
+        mobNavMethEl.addEventListener('click', scrollToMethodology);
+      }
+
+      const navBrandTop = document.getElementById('nav-brand-top');
+      if (navBrandTop) {
+        navBrandTop.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
       const navResLinkEl = document.getElementById('nav-results-link');
       if (navResLinkEl) {
         navResLinkEl.addEventListener('click', function (e) {
+          e.preventDefault();
+          buildDiagnosticReport();
+        });
+      }
+
+      const mobNavResEl = document.getElementById('mob-nav-results');
+      if (mobNavResEl) {
+        mobNavResEl.addEventListener('click', function (e) {
           e.preventDefault();
           buildDiagnosticReport();
         });
