@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أداة التشخيص الاستراتيجي لصفحات فيسبوك — حسن علي | خبير التسويق الاستراتيجي</title>
+  <meta name="description" content="أداة التشخيص الاستراتيجي لصفحات فيسبوك — احصل على تقرير PDF شامل وسكور جودة صفحتك مقدم من حسن علي، خبير التسويق الاستراتيجي والمدير التنفيذي لشركة Sun Media." />
+  <!-- Google Fonts: Alexandria (Arabic) & DM Sans (English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&display=swap" rel="stylesheet">
+  <!-- html2pdf.js for direct client-side PDF generation -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    :root {
+      --blue: #146EF5;
+      --blue-hover: #0E58C8;
+      --blue-soft: rgba(20, 110, 245, 0.08);
+      --green: #20A464;
+      --green-soft: rgba(32, 164, 100, 0.10);
+      --amber: #D97706;
+      --amber-soft: rgba(217, 119, 6, 0.10);
+      --red: #DC2626;
+      --red-soft: rgba(220, 38, 38, 0.10);
+      --navy: #071A33;
+      --ink: #111827;
+      --muted: #667085;
+      --paper: #F5F6F8;
+      --white: #FFFFFF;
+      --line: #E5E7EB;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 5.5rem;
+    }
+
+    body {
+      font-family: 'Alexandria', 'DM Sans', Tahoma, Arial, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      line-height: 1.85;
+      word-spacing: 0.04em;
+      letter-spacing: 0 !important;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Prevent any word or heading overlap across Arabic & English typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Alexandria', 'DM Sans', Tahoma, sans-serif;
+      line-height: 1.65 !important;
+      letter-spacing: 0 !important;
+      word-spacing: 0.05em;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      overflow-wrap: break-word;
+    }
+
+    p, li, td, th, label, span, div, button {
+      letter-spacing: 0 !important;
+      overflow-wrap: break-word;
+    }
+
+    p {
+      line-height: 1.85 !important;
+      margin-top: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    .font-en {
+      font-family: 'DM Sans', 'Alexandria', sans-serif;
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      letter-spacing: 0 !important;
+    }
+
+    /* Built-in Layout & Utility Classes */
+    .hidden { display: none !important; }
+    .block { display: block; }
+    .inline-block { display: inline-block; }
+    .flex { display: flex; }
+    .inline-flex { display: inline-flex; }
+    .grid { display: grid; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-1 { flex: 1 1 0%; min-width: 0; }
+    .flex-grow { flex-grow: 1; }
+    .flex-shrink-0 { flex-shrink: 0; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .items-stretch { align-items: stretch; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .self-start { align-self: flex-start; }
+    .gap-1\.5 { gap: 0.375rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-2\.5 { gap: 0.625rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-5 { gap: 1.25rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+
+    .max-w-6xl { max-width: 72rem; }
+    .max-w-3xl { max-width: 48rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .w-full { width: 100%; }
+    .w-10 { width: 2.5rem; }
+    .h-10 { height: 2.5rem; }
+    .w-12 { width: 3rem; }
+    .h-12 { height: 3rem; }
+    .w-14 { width: 3.5rem; }
+    .h-14 { height: 3.5rem; }
+    .w-40 { width: 10rem; }
+    .h-40 { height: 10rem; }
+    .w-9 { width: 2.25rem; }
+    .h-9 { height: 2.25rem; }
+    .w-4 { width: 1rem; }
+    .h-4 { height: 1rem; }
+    .h-16 { height: 4.25rem; }
+    .h-2 { height: 0.5rem; }
+    .h-2\.5 { height: 0.625rem; }
+    .h-1\.5 { height: 0.375rem; }
+    .h-full { height: 100%; }
+
+    .p-3 { padding: 0.75rem; }
+    .p-3\.5 { padding: 0.875rem; }
+    .p-4 { padding: 1rem; }
+    .p-5 { padding: 1.25rem; }
+    .p-6 { padding: 1.5rem; }
+    .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .px-2\.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+    .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .px-3\.5 { padding-left: 0.875rem; padding-right: 0.875rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-0\.5 { padding-top: 0.15rem; padding-bottom: 0.15rem; }
+    .py-1 { padding-top: 0.3rem; padding-bottom: 0.3rem; }
+    .py-1\.5 { padding-top: 0.4rem; padding-bottom: 0.4rem; }
+    .py-2 { padding-top: 0.55rem; padding-bottom: 0.55rem; }
+    .py-2\.5 { padding-top: 0.65rem; padding-bottom: 0.65rem; }
+    .py-3 { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+    .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+    .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .pt-2 { padding-top: 0.5rem; }
+    .pt-3 { padding-top: 0.75rem; }
+    .pt-4 { padding-top: 1rem; }
+    .pt-6 { padding-top: 1.5rem; }
+    .pt-8 { padding-top: 2rem; }
+    .pb-1 { padding-bottom: 0.25rem; }
+    .pb-3 { padding-bottom: 0.75rem; }
+    .pb-4 { padding-bottom: 1rem; }
+    .pb-6 { padding-bottom: 1.5rem; }
+    .pr-3\.5 { padding-right: 0.875rem; }
+
+    .m-0 { margin: 0 !important; }
+    .mt-1 { margin-top: 0.35rem !important; }
+    .mt-1\.5 { margin-top: 0.45rem !important; }
+    .mt-2 { margin-top: 0.6rem !important; }
+    .mt-3 { margin-top: 0.85rem !important; }
+    .mt-12 { margin-top: 3rem !important; }
+    .mb-1 { margin-bottom: 0.35rem !important; }
+    .mb-1\.5 { margin-bottom: 0.45rem !important; }
+    .mb-2 { margin-bottom: 0.6rem !important; }
+    .mb-3 { margin-bottom: 0.85rem !important; }
+    .mb-4 { margin-bottom: 1.1rem !important; }
+    .mb-5 { margin-bottom: 1.35rem !important; }
+    .mb-6 { margin-bottom: 1.6rem !important; }
+    .my-6 { margin-top: 1.5rem !important; margin-bottom: 1.5rem !important; }
+
+    .space-y-1\.5 > * + * { margin-top: 0.4rem !important; }
+    .space-y-2\.5 > * + * { margin-top: 0.7rem !important; }
+    .space-y-3 > * + * { margin-top: 0.85rem !important; }
+    .space-y-4 > * + * { margin-top: 1.15rem !important; }
+    .space-y-5 > * + * { margin-top: 1.4rem !important; }
+    .space-y-6 > * + * { margin-top: 1.65rem !important; }
+    .space-y-8 > * + * { margin-top: 2.2rem !important; }
+
+    .rounded { border-radius: 0.3rem; }
+    .rounded-md { border-radius: 0.4rem; }
+    .rounded-lg { border-radius: 0.55rem; }
+    .rounded-xl { border-radius: 0.8rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-full { border-radius: 9999px; }
+
+    .border { border: 1px solid var(--line); }
+    .border-b { border-bottom: 1px solid var(--line); }
+    .border-t { border-top: 1px solid var(--line); }
+    .border-b-2 { border-bottom: 2px solid var(--navy); }
+    .border-r-2 { border-right: 3px solid var(--blue); }
+    .border-r-4 { border-right-width: 4px; border-right-style: solid; }
+    .border-r-\[\#20A464\] { border-right-color: #20A464; }
+    .border-r-\[\#DC2626\] { border-right-color: #DC2626; }
+    .border-slate-700 { border-color: #334155; }
+    .border-slate-800 { border-color: #1E293B; }
+
+    .bg-white { background-color: #FFFFFF; }
+    .bg-\[\#F5F6F8\] { background-color: #F5F6F8; }
+    .bg-\[\#071A33\], .editorial-card.bg-\[\#071A33\] { background-color: #071A33 !important; }
+    .bg-\[\#146EF5\] { background-color: #146EF5; }
+    .bg-\[\#20A464\] { background-color: #20A464; }
+    .bg-\[\#D97706\] { background-color: #D97706; }
+    .bg-\[\#DC2626\] { background-color: #DC2626; }
+    .bg-slate-800 { background-color: #1E293B; }
+    .bg-slate-900\/80, .bg-slate-900\/90, .bg-slate-900\/70 { background-color: rgba(15, 23, 42, 0.85); }
+    .bg-\[\#146EF5\]\/10 { background-color: rgba(20, 110, 245, 0.10); }
+    .bg-\[\#20A464\]\/10 { background-color: rgba(32, 164, 100, 0.12); }
+    .bg-\[\#D97706\]\/10 { background-color: rgba(217, 119, 6, 0.12); }
+    .bg-\[\#DC2626\]\/10 { background-color: rgba(220, 38, 38, 0.12); }
+
+    .text-white { color: #FFFFFF; }
+    .text-\[\#071A33\] { color: #071A33; }
+    .text-\[\#111827\] { color: #111827; }
+    .text-\[\#667085\] { color: #667085; }
+    .text-\[\#146EF5\] { color: #146EF5; }
+    .text-\[\#20A464\] { color: #20A464; }
+    .text-\[\#D97706\] { color: #D97706; }
+    .text-\[\#DC2626\] { color: #DC2626; }
+    .text-slate-200 { color: #E2E8F0; }
+    .text-slate-300 { color: #CBD5E1; }
+    .text-slate-400 { color: #94A3B8; }
+
+    .text-xs { font-size: 0.78rem; line-height: 1.65; }
+    .text-sm { font-size: 0.9rem; line-height: 1.75; }
+    .text-base { font-size: 1rem; line-height: 1.75; }
+    .text-lg { font-size: 1.125rem; line-height: 1.7; }
+    .text-xl { font-size: 1.25rem; line-height: 1.65; }
+    .text-2xl { font-size: 1.45rem; line-height: 1.6; }
+    .text-4xl { font-size: 2.1rem; line-height: 1.35; }
+    .text-\[11px\] { font-size: 11.5px; line-height: 1.6; }
+
+    .font-normal { font-weight: 400; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .font-extrabold { font-weight: 800; }
+    .uppercase { text-transform: uppercase; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .text-left { text-align: left; }
+    .whitespace-nowrap { white-space: nowrap; }
+    .overflow-hidden { overflow: hidden; }
+    .overflow-x-auto { overflow-x: auto; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .sticky { position: sticky; }
+    .fixed { position: fixed; }
+    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+    .top-0 { top: 0; }
+    .bottom-5 { bottom: 1.25rem; }
+    .left-5 { left: 1.25rem; }
+    .z-40 { z-index: 40; }
+    .z-50 { z-index: 50; }
+    .-rotate-90 { transform: rotate(-90deg); }
+
+    /* Responsive Grid Helpers */
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    @media (min-width: 640px) {
+      .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sm\:col-span-2 { grid-column: span 2 / span 2; }
+      .sm\:flex-row { flex-direction: row; }
+      .sm\:items-center { align-items: center; }
+      .sm\:inline-block { display: inline-block; }
+      .sm\:w-auto { width: auto; }
+      .sm\:p-6 { padding: 1.5rem; }
+      .sm\:p-8 { padding: 2rem; }
+      .sm\:p-10 { padding: 2.5rem; }
+      .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .sm\:py-14 { padding-top: 3rem; padding-bottom: 3rem; }
+      .sm\:text-sm { font-size: 0.9rem; line-height: 1.75; }
+      .sm\:text-base { font-size: 1rem; line-height: 1.8; }
+      .sm\:text-lg { font-size: 1.15rem; line-height: 1.7; }
+      .sm\:text-xl { font-size: 1.28rem; line-height: 1.65; }
+      .sm\:text-2xl { font-size: 1.55rem; line-height: 1.6; }
+      .sm\:text-3xl { font-size: 1.85rem; line-height: 1.6; }
+    }
+
+    @media (min-width: 768px) {
+      .md\:flex { display: flex; }
+      .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+      .lg\:col-span-4 { grid-column: span 4 / span 4; }
+      .lg\:col-span-8 { grid-column: span 8 / span 8; }
+      .lg\:sticky { position: sticky; }
+      .lg\:top-20 { top: 5.25rem; }
+    }
+
+    /* Editorial Portfolio Styling */
+    .eyebrow-tag {
+      font-family: 'DM Sans', 'Alexandria', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      direction: ltr;
+      unicode-bidi: isolate;
+      letter-spacing: 0 !important;
+    }
+
+    .en-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      background-color: var(--paper);
+      border: 1px solid var(--line);
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      line-height: 1.5;
+    }
+
+    .editorial-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      transition: all 0.22s ease;
+    }
+
+    .editorial-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 10px 28px -8px rgba(7, 26, 51, 0.06);
+    }
+
+    .btn-primary {
+      background-color: var(--blue);
+      color: var(--white);
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 0.75rem 1.35rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid var(--blue);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--blue-hover);
+      border-color: var(--blue-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--white);
+      color: var(--navy);
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 0.75rem 1.35rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--navy);
+      background-color: #F9FAFB;
+    }
+
+    .btn-green {
+      background-color: var(--green);
+      color: var(--white);
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 0.75rem 1.35rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid var(--green);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .btn-green:hover {
+      filter: brightness(0.95);
+    }
+
+    /* Option Radio Card */
+    .option-card {
+      background-color: var(--white);
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      text-align: right;
+      width: 100%;
+    }
+
+    .option-card:hover {
+      border-color: #93C5FD;
+      background-color: #F8FAFC;
+    }
+
+    .option-card.selected {
+      border-color: var(--blue);
+      background-color: rgba(20, 110, 245, 0.05);
+      box-shadow: 0 0 0 3px rgba(20, 110, 245, 0.10);
+    }
+
+    .option-radio {
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      border: 2px solid #CBD5E1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: all 0.18s ease;
+    }
+
+    .option-card.selected .option-radio {
+      border-color: var(--blue);
+      background-color: var(--blue);
+    }
+
+    .option-card.selected .option-radio::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background-color: var(--white);
+    }
+
+    /* Pillar Tab Pill */
+    .pillar-tab {
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--muted);
+      border-radius: 10px;
+      padding: 0.65rem 1rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+
+    .pillar-tab.active {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .pillar-tab.completed:not(.active) {
+      border-color: rgba(32, 164, 100, 0.4);
+      background: rgba(32, 164, 100, 0.06);
+      color: var(--navy);
+    }
+
+    /* Form Controls */
+    .form-input {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border-radius: 0.55rem;
+      border: 1px solid var(--line);
+      background-color: var(--paper);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--navy);
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .form-input:focus {
+      background-color: var(--white);
+      border-color: var(--blue);
+      outline: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      line-height: 1.75;
+      vertical-align: top;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--paper);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+
+    /* Print Stylesheet for Vector PDF Export */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #pdf-printable-wrapper {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- Toast Notification -->
+  <div id="toast-container" class="fixed bottom-5 left-5 z-50 hidden no-print">
+    <div id="toast-box" class="bg-[#071A33] text-white px-4 py-3 rounded-xl border border-slate-700 flex items-center gap-3 text-sm font-medium">
+      <span id="toast-icon" style="width:10px;height:10px;border-radius:9999px;background:#20A464;display:inline-block;flex-shrink:0;"></span>
+      <span id="toast-message">تم بنجاح</span>
+    </div>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-[#F5F6F8] border-b border-[#E5E7EB] no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <!-- Brand Identity -->
+      <div class="flex items-center gap-3">
+        <a href="#top" class="w-10 h-10 rounded-lg bg-[#071A33] text-white font-en font-extrabold text-base flex items-center justify-center flex-shrink-0">
+          HA.
+        </a>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="font-bold text-[#071A33] text-sm sm:text-base">حسن علي</span>
+            <span class="hidden sm:inline-block text-xs font-en font-semibold text-[#146EF5] bg-[#146EF5]/10 px-2 py-0.5 rounded" dir="ltr">HA / STRATEGY</span>
+          </div>
+          <p class="text-[11px] text-[#667085] m-0">خبير التسويق الاستراتيجي · المدير التنفيذي لشركة Sun Media</p>
+        </div>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#667085]">
+        <a href="#methodology-section">المنهجية</a>
+        <a href="#audit-workspace">أداة التشخيص</a>
+        <a href="#results-section" id="nav-results-link" class="hidden">التقرير والنتيجة</a>
+        <a href="https://www.hassanalielzayat.site/" target="_blank" rel="noopener noreferrer" class="text-[#146EF5] font-en text-xs font-semibold" dir="ltr">PORTFOLIO ↗</a>
+      </nav>
+
+      <!-- Direct CTA -->
+      <div class="flex items-center gap-2">
+        <button type="button" id="btn-demo-fill" class="btn-secondary py-2 px-3 text-xs sm:text-sm" title="ملء بيانات تجريبية لمعاينة التقرير فوراً">
+          <span>تجربة سريعة</span>
+          <span class="font-en text-[#146EF5] font-bold" dir="ltr">DEMO</span>
+        </button>
+        <a href="https://wa.me/201221359590?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%AD%D8%B3%D9%86%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AA%D8%B3%D9%88%D9%8A%D9%82%D9%8A%D8%A9%20%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%D9%8A%D8%AC%D9%8A%D8%A9" target="_blank" rel="noopener noreferrer" class="btn-primary py-2 px-3.5 text-xs sm:text-sm">
+          <span>تواصل معايا</span>
+          <span class="font-en" dir="ltr">↙</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="flex-grow">
+    <!-- HERO SECTION -->
+    <section class="border-b border-[#E5E7EB] bg-white no-print">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Hero Right Column: Narrative -->
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="eyebrow-tag bg-[#146EF5]/10 px-3 py-1 rounded-full" dir="ltr">
+                STRATEGY · BRAND · GROWTH
+              </span>
+              <span class="text-xs font-en text-[#667085] font-medium" dir="ltr">
+                01 / FACEBOOK PAGE DIAGNOSTIC SYSTEM
+              </span>
+            </div>
+
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-[#071A33] mb-2">
+                أداة التشخيص الاستراتيجي لصفحات فيسبوك
+              </h1>
+              <p class="text-xl sm:text-2xl font-bold text-[#146EF5] m-0">
+                هل صفحتك تبني نظام نمو حقيقي أم تكتفي بنشاط يومي متفرق؟
+              </p>
+            </div>
+
+            <p class="text-[#667085] text-sm sm:text-base max-w-3xl m-0">
+              التسويق ليس مجموعة منشورات أو إعلانات متفرقة؛ إنه نظام يبدأ بفهم العمل والسوق، ثم يحوّل هذا الفهم إلى تموضع واضح، ورسائل مقنعة، وخطوات تدعم المبيعات والنمو. أجب عن <strong class="text-[#071A33]">15 سؤالاً تشخيصياً عبر 5 محاور استراتيجية</strong> لتحصل فوراً على <strong class="text-[#071A33]">تقرير PDF شامل</strong> يحدد سكور جودة صفحتك، الفجوات التسويقية، وخارطة الطريق المناسبة لعملك.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="#audit-workspace" class="btn-primary text-sm">
+                <span>ابدأ تشخيص صفحتك الآن</span>
+                <span class="font-en" dir="ltr">↙</span>
+              </a>
+              <button type="button" id="btn-hero-demo" class="btn-secondary text-sm">
+                <span>معاينة نموذج تقرير جاهز</span>
+              </button>
+            </div>
+
+            <!-- Strategic Pillars Strip -->
+            <div class="pt-4 border-t border-[#E5E7EB] flex flex-wrap items-center gap-3 text-xs text-[#667085]">
+              <span class="font-en font-bold text-[#071A33]" dir="ltr">Understand → Find → Build → Execute → Improve</span>
+              <span>|</span>
+              <span>تشخيص 5 محاور: التموضع · المحتوى · المجتمع · الحملات · التحويل</span>
+            </div>
+          </div>
+
+          <!-- Hero Left Column: Consultant Identity Card -->
+          <div class="lg:col-span-4">
+            <div class="bg-[#071A33] text-white rounded-2xl p-6 border border-slate-800 relative overflow-hidden">
+              <div class="flex items-center justify-between gap-3 border-b border-slate-800 pb-4 mb-4">
+                <div>
+                  <span class="font-en text-[11px] text-[#146EF5] font-bold uppercase block mb-1" dir="ltr">PREPARED BY</span>
+                  <h2 class="text-lg font-bold text-white m-0">حسن علي — Hassan Ali</h2>
+                  <p class="text-xs text-slate-300 mt-1 m-0">خبير التسويق الاستراتيجي ومستشار النمو</p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-[#146EF5] text-white font-en font-extrabold text-lg flex items-center justify-center flex-shrink-0" dir="ltr">
+                  HA
+                </div>
+              </div>
+
+              <blockquote class="text-xs sm:text-sm text-slate-200 border-r-2 border-[#146EF5] pr-3.5 mb-5 m-0" style="line-height: 1.85;">
+                «قاعدة العمل: لا أبدأ بسؤال: ماذا ننشر؟ أبدأ بسؤال: ما النتيجة التجارية التي يحتاج العمل إلى تحقيقها؟»
+              </blockquote>
+
+              <div class="grid grid-cols-2 gap-3 text-xs mb-4">
+                <div class="bg-slate-900/80 border border-slate-800 rounded-lg p-3">
+                  <span class="font-bold text-[#146EF5] text-base block mb-1">+10 سنوات</span>
+                  <span class="text-slate-300 text-[11px] block">خبرة في بناء أنظمة النمو</span>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 rounded-lg p-3">
+                  <span class="font-bold text-[#20A464] text-base block mb-1">5 أسواق</span>
+                  <span class="text-slate-300 text-[11px] block">مصر، الخليج، أوروبا وأمريكا</span>
+                </div>
+              </div>
+
+              <div class="text-[11px] text-slate-400 flex items-center justify-between pt-3 border-t border-slate-800 font-en" dir="ltr">
+                <span>Executive Director · Sun Media</span>
+                <span>15 Qs · PDF Report</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODOLOGY OVERVIEW STRIP -->
+    <section id="methodology-section" class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 pb-4 no-print">
+      <div class="editorial-card p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-[#E5E7EB]">
+          <div>
+            <span class="eyebrow-tag mb-1" dir="ltr">02 / STRATEGIC AUDIT FRAMEWORK</span>
+            <h2 class="text-lg sm:text-xl font-bold text-[#071A33] m-0">كيف نقيّم جودة وفعالية صفحتك على فيسبوك؟</h2>
+          </div>
+          <span class="text-xs text-[#667085]">كل محور يمثل 20 نقطة من إجمالي السكور الاستراتيجي (100 نقطة)</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="p-4 rounded-xl bg-[#F5F6F8] border border-[#E5E7EB]">
+            <span class="font-en text-xs font-bold text-[#146EF5] block mb-1" dir="ltr">01 / POSITIONING</span>
+            <h3 class="font-bold text-[#071A33] text-sm mb-1">التموضع والهوية</h3>
+            <p class="text-xs text-[#667085] m-0">وضوح عرض القيمة، اتساق المظهر البصري، وجاهزية قنوات التحويل.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#F5F6F8] border border-[#E5E7EB]">
+            <span class="font-en text-xs font-bold text-[#146EF5] block mb-1" dir="ltr">02 / CONTENT</span>
+            <h3 class="font-bold text-[#071A33] text-sm mb-1">استراتيجية المحتوى</h3>
+            <p class="text-xs text-[#667085] m-0">بناء العلامة مقابل النشر العشوائي، تنوع الأركان، وخطة النشر.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#F5F6F8] border border-[#E5E7EB]">
+            <span class="font-en text-xs font-bold text-[#146EF5] block mb-1" dir="ltr">03 / COMMUNITY</span>
+            <h3 class="font-bold text-[#071A33] text-sm mb-1">الجمهور والتفاعل</h3>
+            <p class="text-xs text-[#667085] m-0">جودة المتابعين، التفاعل الحقيقي، وإدارة الثقة والسمعة.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#F5F6F8] border border-[#E5E7EB]">
+            <span class="font-en text-xs font-bold text-[#146EF5] block mb-1" dir="ltr">04 / CAMPAIGNS</span>
+            <h3 class="font-bold text-[#071A33] text-sm mb-1">الحملات والعروض</h3>
+            <p class="text-xs text-[#667085] m-0">قوة العروض التسويقية، هيكلة مسار الإعلانات، وترابط الرسالة.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[#F5F6F8] border border-[#E5E7EB]">
+            <span class="font-en text-xs font-bold text-[#146EF5] block mb-1" dir="ltr">05 / CONVERSION</span>
+            <h3 class="font-bold text-[#071A33] text-sm mb-1">التحويل والقياس</h3>
+            <p class="text-xs text-[#667085] m-0">إغلاق المبيعات في الرسائل، متابعة العملاء، وقياس العائد الفعلي.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMINENT VIEW SWITCHER BAR -->
+    <section id="view-switcher-bar" class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 no-print">
+      <div class="bg-[#071A33] text-white p-4 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <button type="button" id="tab-view-questions" class="btn-primary text-xs sm:text-sm py-2 px-4">
+            <span>1. أسئلة تشخيص الصفحة (15 سؤالاً)</span>
+          </button>
+          <button type="button" id="tab-view-results" class="btn-green text-xs sm:text-sm py-2 px-4">
+            <span>2. عرض النتيجة وتقرير الـ PDF الشامل</span>
+            <span id="tab-results-score-badge" class="font-en font-extrabold bg-white text-[#071A33] px-2.5 py-0.5 rounded text-xs" dir="ltr">جاهز</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2.5 text-xs text-slate-300 flex-wrap">
+          <span>تريد رؤية النتيجة فوراً؟</span>
+          <button type="button" id="btn-bar-demo" class="text-xs font-bold text-[#071A33] bg-white px-3 py-1.5 rounded-lg cursor-pointer border-0">
+            تجربة نتيجة جاهزة (DEMO) ↙
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN INTERACTIVE AUDIT WORKSPACE -->
+    <section id="audit-workspace" class="max-w-6xl mx-auto px-4 sm:px-6 py-6 no-print">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Left/Main Column: Client Metadata + Questions (8 cols) -->
+        <div class="lg:col-span-8 space-y-6">
+
+          <!-- Step 0: Page / Business Basic Data -->
+          <div class="editorial-card p-5 sm:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#E5E7EB] pb-4 mb-5">
+              <div>
+                <span class="eyebrow-tag mb-1" dir="ltr">03 / BUSINESS CONTEXT</span>
+                <h2 class="text-base sm:text-lg font-bold text-[#071A33] m-0">بيانات الصفحة والعمل (تظهر في تقرير الـ PDF الخاص بك)</h2>
+              </div>
+              <span class="text-xs bg-[#F5F6F8] text-[#667085] px-3 py-1 rounded-md border border-[#E5E7EB]">خطوة أساسية</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="input-page-name" class="block text-xs font-bold text-[#071A33] mb-2">اسم صفحة الفيسبوك / العلامة التجارية *</label>
+                <input type="text" id="input-page-name" placeholder="مثال: شركة ريفيرا للتطوير العقاري" class="form-input" />
+              </div>
+
+              <div>
+                <label for="input-client-name" class="block text-xs font-bold text-[#071A33] mb-2">اسمك الكريم / المسمى الوظيفي</label>
+                <input type="text" id="input-client-name" placeholder="مثال: أ. أحمد محمود — مدير التسويق" class="form-input" />
+              </div>
+
+              <div>
+                <label for="input-industry" class="block text-xs font-bold text-[#071A33] mb-2">القطاع / الصناعة</label>
+                <select id="input-industry" class="form-input">
+                  <option value="التجارة الإلكترونية والبيع بالتجزئة">التجارة الإلكترونية والبيع بالتجزئة</option>
+                  <option value="التطوير العقاري والمقاولات">التطوير العقاري والمقاولات</option>
+                  <option value="الهندسة والتصميم المعماري والديكور">الهندسة والتصميم المعماري والديكور</option>
+                  <option value="الرعاية الصحية والصيدليات والعيادات">الرعاية الصحية والصيدليات والعيادات</option>
+                  <option value="الخدمات المهنية والاستشارات">الخدمات المهنية والاستشارات</option>
+                  <option value="المطاعم والكافيهات والضيافة">المطاعم والكافيهات والضيافة</option>
+                  <option value="التعليم والتدريب والأكاديميات">التعليم والتدريب والأكاديميات</option>
+                  <option value="الصناعة والتوريد والمنسوجات">الصناعة والتوريد والمنسوجات</option>
+                  <option value="قطاع آخر">قطاع آخر</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="input-primary-goal" class="block text-xs font-bold text-[#071A33] mb-2">التحدي أو الهدف التجاري الأهم حالياً</label>
+                <select id="input-primary-goal" class="form-input">
+                  <option value="ننشر باستمرار ولا نرى أثرًا واضحاً في المبيعات">ننشر باستمرار ولا نرى أثرًا واضحاً في المبيعات</option>
+                  <option value="العملاء لا يفهمون قيمة ما نقدمه مقارنة بالمنافسين">العملاء لا يفهمون قيمة ما نقدمه مقارنة بالمنافسين</option>
+                  <option value="نريد الوصول إلى عملاء أكثر وزيادة العائد من الإعلانات">نريد الوصول إلى عملاء أكثر وزيادة العائد من الإعلانات</option>
+                  <option value="تأتينا رسائل كثيرة ولكن نسبة التحويل إلى مبيعات ضعيفة">تأتينا رسائل كثيرة ولكن نسبة التحويل إلى مبيعات ضعيفة</option>
+                  <option value="أنشطة التسويق متفرقة ونحتاج إلى اتجاه واضح للنمو">أنشطة التسويق متفرقة ونحتاج إلى اتجاه واضح للنمو</option>
+                </select>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="input-page-url" class="block text-xs font-bold text-[#071A33] mb-2">رابط الصفحة على فيسبوك (اختياري — لإدراجه في التقرير والرسالة)</label>
+                <input type="url" id="input-page-url" dir="ltr" placeholder="https://facebook.com/yourpage" class="form-input text-left font-en" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Pillar Navigation & Mode Switcher -->
+          <div class="editorial-card p-4 sm:p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <span class="eyebrow-tag" dir="ltr">04 / DIAGNOSTIC QUESTIONS</span>
+                <span id="progress-badge-text" class="text-xs font-bold text-[#071A33] bg-[#F5F6F8] px-3 py-1 rounded-full border border-[#E5E7EB]">
+                  تمت الإجابة على 0 من 15
+                </span>
+              </div>
+
+              <div class="flex items-center gap-3 flex-wrap">
+                <button type="button" id="btn-toggle-view-mode" class="text-xs font-semibold text-[#146EF5] px-2 py-1" style="background:transparent;border:none;cursor:pointer;">
+                  عرض جميع الأسئلة في صفحة واحدة
+                </button>
+                <button type="button" id="btn-reset-audit" class="text-xs font-semibold text-[#667085] px-2 py-1" style="background:transparent;border:none;cursor:pointer;">
+                  إعادة تعيين
+                </button>
+              </div>
+            </div>
+
+            <!-- Overall Progress Bar -->
+            <div class="w-full h-2 bg-[#F5F6F8] rounded-full overflow-hidden mb-4 border border-[#E5E7EB]">
+              <div id="overall-progress-bar" class="h-full bg-[#146EF5]" style="width: 0%; transition: width 0.3s ease;"></div>
+            </div>
+
+            <!-- Pillar Tabs -->
+            <div id="pillar-tabs-container" class="flex items-center gap-2 overflow-x-auto pb-1">
+              <button type="button" data-pillar-idx="0" class="pillar-tab active"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">01</span><span>التموضع والهوية</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-slate-800 text-slate-200" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="1" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">02</span><span>استراتيجية المحتوى</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="2" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">03</span><span>الجمهور والتفاعل</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="3" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">04</span><span>الحملات والعروض</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button><button type="button" data-pillar-idx="4" class="pillar-tab"><span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">05</span><span>التحويل والقياس</span><span class="font-en text-[11px] px-2 py-0.5 rounded bg-[#F5F6F8] text-[#667085]" dir="ltr">0/3</span></button>
+            </div>
+          </div>
+
+          <!-- Questions Container -->
+          <div id="questions-container" class="space-y-5">
+            <div class="space-y-4"><div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">01 / POSITIONING</span><h2 class="text-base sm:text-lg font-bold text-white mb-1">التموضع والهوية البصرية وعرض القيمة</h2><p class="text-xs text-slate-300 m-0">هل يفهم الزائر الجديد من تخدم، وما القيمة التي تقدمها، ولماذا يختارك خلال ثوانٍ؟</p></div><span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">20 نقطة كحد أقصى</span></div><div class="editorial-card p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 01 / 15</span><span class="en-badge" dir="ltr">Value Proposition &amp; Bio</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">وضوح عرض القيمة في الوصف والغلاف</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">عندما يدخل عميل جديد إلى صفحتك لأول مرة، هل يستطيع فهم ما تقدمه ولمن وما الذي يميزك في جملة واحدة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q1" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">غير واضح</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">الوصف فارغ أو يحتوي على عبارات عامة جداً دون توضيح طبيعة الخدمة أو الميزة التنافسية.</p></div></button><button type="button" data-qid="q1" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">يذكر النشاط فقط</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نذكر اسم المجال أو المنتجات فقط دون توضيح لماذا يجب على العميل اختيارنا بدلاً من المنافسين.</p></div></button><button type="button" data-qid="q1" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">واضح جزئياً</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">الرسالة واضحة في الوصف ولكن صورة الغلاف والمنشور المثبت لا يدعمان نفس التموضع.</p></div></button><button type="button" data-qid="q1" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">واضح ومترابط تماماً</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">الوصف والغلاف والمنشور المثبت يوضحون بدقة من نخدم، القيمة المقدمة، وسبب الثقة بنا.</p></div></button></div></div><div class="editorial-card p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 02 / 15</span><span class="en-badge" dir="ltr">Brand Visual Consistency</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">اتساق الهوية البصرية وتصميمات الصفحة</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل تعكس صورة الحساب، الغلاف، وتصميمات المنشورات هوية بصرية متماسكة يسهل التعرف عليها؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q2" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">عشوائية بدون هوية</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">التصميمات مختلفة في الألوان والخطوط في كل منشور ولا يوجد طابع بصري موحد للعلامة.</p></div></button><button type="button" data-qid="q2" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">توحيد بسيط غير مستمر</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">نضع الشعار على الصور فقط، لكن الألوان والخطوط تتغير باستمرار حسب المصمم.</p></div></button><button type="button" data-qid="q2" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">هوية جيدة بأخطاء بسيطة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">توجد ألوان وخطوط محددة في أغلب المنشورات، لكنها تحتاج إلى تطوير لتعكس قيمة أعلى.</p></div></button><button type="button" data-qid="q2" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">هوية احترافية مميزة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">بمجرد رؤية المنشور يتعرف العميل على علامتنا فوراً بفضل تماسك الألوان والخطوط.</p></div></button></div></div><div class="editorial-card p-5 sm:p-6"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><div class="flex flex-wrap items-center gap-2"><span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">QUESTION 03 / 15</span><span class="en-badge" dir="ltr">CTA &amp; Trust Signals</span></div><span class="text-xs font-semibold text-[#667085]">اختر الإجابة الأقرب لواقع صفحتك</span></div><h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">جاهزية نقاط التحويل وإشارات الثقة</h3><p class="text-xs sm:text-sm text-[#667085] mb-4">هل زر الإجراء الأساسي، بيانات الاتصال، والمنشور المثبت يوجهون الزائر لخطوة واضحة؟</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><button type="button" data-qid="q3" data-score="0" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">بيانات ناقصة أو قديمة</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#DC2626]/10 text-[#DC2626]" dir="ltr">0 / 3</span></div><p class="text-xs text-[#667085] m-0">بعض بيانات التواصل غير محدثة، ولا يوجد منشور مثبت أو زر إجراء واضح.</p></div></button><button type="button" data-qid="q3" data-score="1" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">موجودة بدون توجيه</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#D97706]/10 text-[#D97706]" dir="ltr">1 / 3</span></div><p class="text-xs text-[#667085] m-0">البيانات الأساسية موجودة، لكن لا يوجد منشور مثبت يشرح رحلة العميل أو كيفية الطلب.</p></div></button><button type="button" data-qid="q3" data-score="2" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">مكتملة وتحتاج تحسين</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#146EF5]/10 text-[#146EF5]" dir="ltr">2 / 3</span></div><p class="text-xs text-[#667085] m-0">البيانات والزر مفعّلون، لكن المنشور المثبت قديم أو لا يعكس أقوى عرض حالي لدينا.</p></div></button><button type="button" data-qid="q3" data-score="3" class="option-card "><div class="option-radio"></div><div class="flex-1"><div class="flex flex-wrap items-center justify-between gap-2 mb-1.5"><span class="font-bold text-sm text-[#071A33]">مُحسّنة بالكامل للتحويل</span><span class="font-en text-[11px] font-bold px-2 py-0.5 rounded bg-[#20A464]/10 text-[#20A464]" dir="ltr">3 / 3</span></div><p class="text-xs text-[#667085] m-0">كل زائر يجد بيانات مكتملة، زر تواصل مباشر، ومنشوراً مثبتاً يقوده بسلاسة لاتخاذ قرار.</p></div></button></div></div></div>
+          </div>
+
+          <!-- Step Navigation Footer -->
+          <div class="editorial-card p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
+            <button type="button" id="btn-prev-pillar" class="btn-secondary text-sm">
+              <span>→ المحور السابق</span>
+            </button>
+
+            <div class="text-xs text-[#667085] font-medium" id="step-footer-hint">
+              أكمل إجابات هذا المحور للانتقال إلى المحور التالي
+            </div>
+
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <button type="button" id="btn-next-pillar" class="btn-primary text-sm">
+                <span>المحور التالي ←</span>
+              </button>
+              <button type="button" id="btn-generate-report" class="btn-green text-sm hidden">
+                <span>إصدار التقرير وتحميل الـ PDF</span>
+                <span class="font-en" dir="ltr">↙</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Sticky Sidebar: Live Score Tracker & Strategic Principles (4 cols) -->
+        <div class="lg:col-span-4 lg:sticky lg:top-20 space-y-5">
+          <!-- Live Audit Progress Card -->
+          <div class="editorial-card p-5">
+            <div class="flex items-center justify-between gap-2 border-b border-[#E5E7EB] pb-3 mb-4">
+              <div>
+                <span class="font-en text-[11px] font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">LIVE DIAGNOSTIC</span>
+                <h3 class="text-base font-bold text-[#071A33] m-0">ملخص التقييم اللحظي</h3>
+              </div>
+              <span id="live-score-pill" class="font-en font-extrabold text-sm bg-[#071A33] text-white px-3 py-1 rounded-lg" dir="ltr">
+                0 / 100
+              </span>
+            </div>
+
+            <!-- Pillar Mini Progress Bars -->
+            <div id="sidebar-pillars-summary" class="space-y-3 mb-5">
+              <div><div class="flex items-center justify-between gap-2 text-xs mb-1.5"><span class="font-semibold text-[#071A33]">01. التموضع والهوية</span><span class="font-en font-bold text-[#667085]" dir="ltr">0/20 (0/3)</span></div><div class="w-full h-1.5 bg-[#F5F6F8] rounded-full overflow-hidden border border-[#E5E7EB]"><div class="h-full" style="width: 0%; background-color: #D97706; transition: width 0.3s ease;"></div></div></div><div><div class="flex items-center justify-between gap-2 text-xs mb-1.5"><span class="font-semibold text-[#071A33]">02. استراتيجية المحتوى</span><span class="font-en font-bold text-[#667085]" dir="ltr">0/20 (0/3)</span></div><div class="w-full h-1.5 bg-[#F5F6F8] rounded-full overflow-hidden border border-[#E5E7EB]"><div class="h-full" style="width: 0%; background-color: #D97706; transition: width 0.3s ease;"></div></div></div><div><div class="flex items-center justify-between gap-2 text-xs mb-1.5"><span class="font-semibold text-[#071A33]">03. الجمهور والتفاعل</span><span class="font-en font-bold text-[#667085]" dir="ltr">0/20 (0/3)</span></div><div class="w-full h-1.5 bg-[#F5F6F8] rounded-full overflow-hidden border border-[#E5E7EB]"><div class="h-full" style="width: 0%; background-color: #D97706; transition: width 0.3s ease;"></div></div></div><div><div class="flex items-center justify-between gap-2 text-xs mb-1.5"><span class="font-semibold text-[#071A33]">04. الحملات والعروض</span><span class="font-en font-bold text-[#667085]" dir="ltr">0/20 (0/3)</span></div><div class="w-full h-1.5 bg-[#F5F6F8] rounded-full overflow-hidden border border-[#E5E7EB]"><div class="h-full" style="width: 0%; background-color: #D97706; transition: width 0.3s ease;"></div></div></div><div><div class="flex items-center justify-between gap-2 text-xs mb-1.5"><span class="font-semibold text-[#071A33]">05. التحويل والقياس</span><span class="font-en font-bold text-[#667085]" dir="ltr">0/20 (0/3)</span></div><div class="w-full h-1.5 bg-[#F5F6F8] rounded-full overflow-hidden border border-[#E5E7EB]"><div class="h-full" style="width: 0%; background-color: #D97706; transition: width 0.3s ease;"></div></div></div>
+            </div>
+
+            <button type="button" id="btn-sidebar-show-results" class="w-full btn-primary text-sm">
+              <span>عرض التحليل الشامل وتقرير الـ PDF</span>
+              <span class="font-en" dir="ltr">↙</span>
+            </button>
+            <p id="sidebar-incomplete-hint" class="text-[11px] text-[#667085] text-center mt-2 m-0">
+              أجب عن الأسئلة الـ 15 لتفعيل التشخيص الكامل وتحميل التقرير.
+            </p>
+          </div>
+
+          <!-- Strategic Principles Card -->
+          <div class="editorial-card p-5 bg-[#071A33] text-white border-slate-800">
+            <span class="font-en text-[11px] font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">12 / PRINCIPLE</span>
+            <h3 class="text-base font-bold text-white mb-3">فكّر في القيمة التي تهم العميل.</h3>
+            <div class="space-y-2.5 text-xs">
+              <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                <span class="text-slate-200">هل يبني المحتوى علامة أم يضيف منشوراً فقط؟</span>
+                <span class="font-en text-[11px] text-[#146EF5] font-bold" dir="ltr">BRAND OR ACTIVITY?</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                <span class="text-slate-200">هل نقيس النشاط أم الأثر على الهدف؟</span>
+                <span class="font-en text-[11px] text-[#146EF5] font-bold" dir="ltr">ACTIVITY OR IMPACT?</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                <span class="text-slate-200">هل يستطيع العميل شرح قيمتنا بجملة واحدة؟</span>
+                <span class="font-en text-[11px] text-[#146EF5] font-bold" dir="ltr">VALUE CLARITY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RESULTS & PDF REPORT PREVIEW SECTION -->
+    <section id="results-section" class="max-w-6xl mx-auto px-4 sm:px-6 py-8 hidden">
+
+      <!-- Top Action Bar for Report -->
+      <div class="editorial-card p-5 mb-6 bg-[#071A33] text-white border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 no-print">
+        <div>
+          <span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">DIAGNOSTIC REPORT READY</span>
+          <h2 class="text-lg sm:text-xl font-bold text-white m-0">تقرير التحليل الاستراتيجي لصفحتك جاهز للتحميل</h2>
+          <p class="text-xs text-slate-300 mt-1 m-0">يمكنك تحميل التقرير مباشرة بصيغة PDF أو طباعته، أو التواصل مباشرة مع أ. حسن علي لبدء خطة العمل.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+          <button type="button" id="btn-download-pdf" class="btn-primary text-sm flex-1">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span id="btn-download-pdf-text">تحميل التقرير الشامل (PDF)</span>
+          </button>
+          <button type="button" id="btn-print-pdf" class="btn-secondary text-sm">
+            <span>طباعة / حفظ كـ PDF</span>
+          </button>
+          <button type="button" id="btn-edit-answers" class="btn-secondary text-xs">
+            <span>← تعديل الإجابات</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PRINTABLE / EXPORTABLE PDF REPORT CONTAINER -->
+      <div id="pdf-printable-wrapper" class="bg-white rounded-2xl border border-[#E5E7EB] overflow-hidden">
+        <div id="pdf-report-sheet" class="p-6 sm:p-10 space-y-8 bg-white text-[#111827]" dir="rtl">
+
+          <!-- Report Official Header -->
+          <div class="border-b-2 border-[#071A33] pb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div class="flex items-start sm:items-center gap-4">
+              <div class="w-14 h-14 rounded-xl bg-[#071A33] text-white font-en font-extrabold text-xl flex items-center justify-center flex-shrink-0" dir="ltr">
+                HA.
+              </div>
+              <div>
+                <span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">STRATEGIC FACEBOOK PAGE AUDIT REPORT</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-[#071A33] mb-1">تقرير التشخيص الاستراتيجي لصفحة الفيسبوك</h2>
+                <p class="text-xs sm:text-sm text-[#667085] m-0">
+                  مقدم من: <strong class="text-[#071A33]">حسن علي</strong> — خبير التسويق الاستراتيجي | المدير التنفيذي لشركة Sun Media
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-[#F5F6F8] border border-[#E5E7EB] rounded-xl px-4 py-3 text-xs space-y-1.5 w-full sm:w-auto">
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-[#667085]">العلامة التجارية / الصفحة:</span>
+                <strong id="report-page-name" class="text-[#071A33]">—</strong>
+              </div>
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-[#667085]">القطاع:</span>
+                <strong id="report-industry" class="text-[#071A33]">—</strong>
+              </div>
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-[#667085]">تاريخ التقييم:</span>
+                <strong id="report-date" class="font-en text-[#071A33]" dir="ltr">—</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Executive Score & Overall Verdict Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <!-- Score Card (4 cols) -->
+            <div class="lg:col-span-4 bg-[#071A33] text-white rounded-2xl p-6 flex flex-col justify-between">
+              <div>
+                <span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">01 / OVERALL QUALITY SCORE</span>
+                <h3 class="text-base font-bold text-slate-200 m-0">سكور جودة وفعالية الصفحة</h3>
+              </div>
+
+              <div class="my-6 flex items-center justify-center">
+                <div class="relative w-40 h-40 flex items-center justify-center">
+                  <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" stroke="#1E293B" stroke-width="10" fill="none"></circle>
+                    <circle id="report-score-circle" cx="60" cy="60" r="50" stroke="#146EF5" stroke-width="10" stroke-linecap="round" fill="none" stroke-dasharray="314.16" stroke-dashoffset="314.16"></circle>
+                  </svg>
+                  <div class="absolute inset-0 flex flex-col items-center justify-center text-center" style="gap: 4px;">
+                    <span id="report-total-score" class="font-en text-4xl font-extrabold text-white block" dir="ltr" style="line-height: 1.15;">0</span>
+                    <span class="text-xs text-slate-300 block" style="line-height: 1.4;">من 100 نقطة</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <span id="report-tier-badge" class="inline-block px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#146EF5] text-white mb-2">
+                  —
+                </span>
+                <p id="report-tier-short" class="text-xs text-slate-300 m-0">
+                  —
+                </p>
+              </div>
+            </div>
+
+            <!-- Executive Diagnostic Narrative & Bars (8 cols) -->
+            <div class="lg:col-span-8 bg-[#F5F6F8] border border-[#E5E7EB] rounded-2xl p-6 flex flex-col justify-between space-y-5">
+              <div>
+                <div class="flex flex-wrap items-center justify-between gap-2.5 mb-3">
+                  <span class="eyebrow-tag" dir="ltr">02 / EXECUTIVE DIAGNOSIS</span>
+                  <span id="report-client-goal-tag" class="text-xs text-[#667085] bg-white px-3 py-1 rounded border border-[#E5E7EB]">—</span>
+                </div>
+                <h3 id="report-verdict-title" class="text-lg sm:text-xl font-extrabold text-[#071A33] mb-2">—</h3>
+                <p id="report-verdict-summary" class="text-xs sm:text-sm text-[#667085] m-0">—</p>
+              </div>
+
+              <!-- 5 Pillars Visual Score Breakdown Bars -->
+              <div class="bg-white rounded-xl p-4 border border-[#E5E7EB]">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <h4 class="text-xs font-bold text-[#071A33] m-0">تحليل الأداء عبر المحاور الاستراتيجية الخمسة</h4>
+                  <span class="font-en text-[11px] text-[#667085]" dir="ltr">SCORE BY STRATEGIC PILLAR</span>
+                </div>
+                <div id="report-pillars-bars" class="space-y-3">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+              <!-- Strengths vs Priority Bottleneck Summary -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="bg-white p-4 rounded-xl border border-[#E5E7EB] border-r-4 border-r-[#20A464]">
+                  <span class="text-[11px] font-bold text-[#20A464] block mb-1">أقوى محور في صفحتك حالياً</span>
+                  <strong id="report-strongest-pillar" class="text-sm text-[#071A33] block" style="line-height: 1.65;">—</strong>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[#E5E7EB] border-r-4 border-r-[#DC2626]">
+                  <span class="text-[11px] font-bold text-[#DC2626] block mb-1">الفجوة الاستراتيجية الأولى (الأولوية القصوى)</span>
+                  <strong id="report-weakest-pillar" class="text-sm text-[#071A33] block" style="line-height: 1.65;">—</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Pillar-by-Pillar Analysis & Action Plan -->
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#E5E7EB] pb-4 mb-5">
+              <div>
+                <span class="eyebrow-tag mb-1" dir="ltr">03 / DETAILED STRATEGIC BREAKDOWN & ROADMAP</span>
+                <h3 class="text-lg sm:text-xl font-bold text-[#071A33] m-0">التشخيص التفصيلي وخارطة الطريق لكل محور</h3>
+              </div>
+              <span class="font-en text-xs font-semibold text-[#667085]" dir="ltr">Understand → Find → Build → Execute → Improve</span>
+            </div>
+
+            <div id="report-detailed-pillars" class="space-y-4">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Question-by-Question Audit Log Table -->
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#E5E7EB] pb-4 mb-4">
+              <div>
+                <span class="eyebrow-tag mb-1" dir="ltr">04 / AUDIT CHECKLIST LOG</span>
+                <h3 class="text-base sm:text-lg font-bold text-[#071A33] m-0">سجل إجابات الفحص والتوصيات الفورية (15 معياراً)</h3>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto border border-[#E5E7EB] rounded-xl">
+              <table class="w-full text-right text-xs">
+                <thead>
+                  <tr class="bg-[#071A33] text-white">
+                    <th class="py-3 px-3.5 font-bold">المحور والمعيار التشخيصي</th>
+                    <th class="py-3 px-3.5 font-bold">الوضع الحالي لصفحتك</th>
+                    <th class="py-3 px-3.5 font-bold text-center">التقييم</th>
+                    <th class="py-3 px-3.5 font-bold">الخطوة التصحيحية الموصى بها</th>
+                  </tr>
+                </thead>
+                <tbody id="report-answers-table-body" class="bg-white">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CUSTOM TAILORED CALL TO ACTION -->
+          <div id="report-custom-cta-box" class="bg-[#071A33] text-white rounded-2xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              <div class="lg:col-span-8 space-y-4">
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <span class="font-en text-xs font-bold bg-[#146EF5] text-white px-3 py-1 rounded-full uppercase" dir="ltr">
+                    05 / RECOMMENDED STRATEGIC SOLUTION
+                  </span>
+                  <span id="cta-recommended-service-code" class="text-xs text-slate-300 font-semibold">
+                    الخدمة الموصى بها
+                  </span>
+                </div>
+
+                <h3 id="cta-headline" class="text-xl sm:text-2xl font-extrabold text-white m-0">
+                  —
+                </h3>
+
+                <p id="cta-description" class="text-xs sm:text-sm text-slate-300 m-0">
+                  —
+                </p>
+
+                <!-- Deliverables included in the recommended service -->
+                <div class="pt-2">
+                  <span class="text-xs font-bold text-[#146EF5] block mb-2.5">ماذا سننجز معاً في هذه الخدمة المخصصة لصفحتك؟</span>
+                  <div id="cta-service-bullets" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-200">
+                    <!-- Populated by JS -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact & Direct Booking Box (4 cols) -->
+              <div class="lg:col-span-4 bg-slate-900/90 border border-slate-800 rounded-xl p-5 space-y-4">
+                <div class="border-b border-slate-800 pb-3">
+                  <span class="text-xs text-slate-400 block mb-1">توصية مقدمة من:</span>
+                  <strong class="text-base text-white block mb-1">حسن علي — Hassan Ali</strong>
+                  <span class="text-xs text-[#146EF5] block">خبير التسويق الاستراتيجي · Sun Media</span>
+                </div>
+
+                <div class="space-y-2.5 no-print">
+                  <a id="cta-whatsapp-btn" href="https://wa.me/201221359590" target="_blank" rel="noopener noreferrer" class="btn-green w-full text-xs sm:text-sm">
+                    <span>احجز جلستك عبر واتساب الآن</span>
+                    <span class="font-en" dir="ltr">↗</span>
+                  </a>
+
+                  <a id="cta-email-btn" href="mailto:hassan.ali.elzayat@gmail.com" class="btn-primary w-full text-xs sm:text-sm">
+                    <span>اطلب الخدمة عبر البريد الإلكتروني</span>
+                    <span class="font-en" dir="ltr">↗</span>
+                  </a>
+
+                  <button type="button" id="btn-copy-summary" class="btn-secondary w-full text-xs">
+                    <span>نسخ ملخص النتيجة لإرساله لـ أ. حسن</span>
+                  </button>
+                </div>
+
+                <!-- Contact Details visible on PDF & Print -->
+                <div class="pt-3 border-t border-slate-800 text-[11px] text-slate-300 space-y-1.5 font-en" dir="ltr">
+                  <div><strong>WhatsApp / Phone:</strong> 01221359590</div>
+                  <div><strong>Email:</strong> hassan.ali.elzayat@gmail.com</div>
+                  <div><strong>Website:</strong> hassanalielzayat.site</div>
+                  <div><strong>Portfolio:</strong> hassanalielzayat.github.io/portfolio</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Report Official Footer -->
+          <div class="pt-4 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#667085]">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="font-en font-bold text-[#071A33]" dir="ltr">HA / STRATEGIC MARKETING</span>
+              <span>—</span>
+              <span>الاستراتيجية تصنع الاتجاه. التنفيذ يصنع الحركة. والاستمرارية تدعم النمو.</span>
+            </div>
+            <div class="font-en text-[11px]" dir="ltr">
+              hassanalielzayat.site · 01221359590
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-[#E5E7EB] mt-12 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-[#071A33] text-white font-en font-extrabold text-sm flex items-center justify-center flex-shrink-0" dir="ltr">
+          HA.
+        </div>
+        <div>
+          <p class="text-xs font-bold text-[#071A33] m-0">حسن علي — خبير التسويق الاستراتيجي</p>
+          <p class="text-[11px] text-[#667085] m-0">الاستراتيجية تصنع الاتجاه. التنفيذ يصنع الحركة. والاستمرارية تدعم النمو.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4 text-xs font-en text-[#667085]" dir="ltr">
+        <a href="mailto:hassan.ali.elzayat@gmail.com">hassan.ali.elzayat@gmail.com</a>
+        <span>·</span>
+        <a href="https://wa.me/201221359590" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#20A464]">WhatsApp: 01221359590</a>
+        <span>·</span>
+        <a href="https://www.hassanalielzayat.site/" target="_blank" rel="noopener noreferrer">hassanalielzayat.site</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- APPLICATION LOGIC -->
+  <script>
+  (function () {
+    if (window.__HA_AUDIT_INITIALIZED__) return;
+    window.__HA_AUDIT_INITIALIZED__ = true;
+
+    const PILLARS = [
+      {
+        id: 'positioning',
+        code: '01 / POSITIONING',
+        title: 'التموضع والهوية البصرية وعرض القيمة',
+        shortTitle: 'التموضع والهوية',
+        subtitle: 'هل يفهم الزائر الجديد من تخدم، وما القيمة التي تقدمها، ولماذا يختارك خلال ثوانٍ؟',
+        serviceKey: 'brand',
+        questions: [
+          {
+            id: 'q1',
+            enTag: 'Value Proposition & Bio',
+            title: 'وضوح عرض القيمة في الوصف والغلاف',
+            prompt: 'عندما يدخل عميل جديد إلى صفحتك لأول مرة، هل يستطيع فهم ما تقدمه ولمن وما الذي يميزك في جملة واحدة؟',
+            options: [
+              { score: 0, label: 'غير واضح', desc: 'الوصف فارغ أو يحتوي على عبارات عامة جداً دون توضيح طبيعة الخدمة أو الميزة التنافسية.', action: 'صياغة رسالة تموضع وعرض قيمة واضح في الوصف والغلاف يحدد الجمهور والنتيجة الموعودة.' },
+              { score: 1, label: 'يذكر النشاط فقط', desc: 'نذكر اسم المجال أو المنتجات فقط دون توضيح لماذا يجب على العميل اختيارنا بدلاً من المنافسين.', action: 'تحويل الوصف من مجرد سرد للمنتجات إلى عرض قيمة يبرز سبب الاختيار والاختلاف.' },
+              { score: 2, label: 'واضح جزئياً', desc: 'الرسالة واضحة في الوصف ولكن صورة الغلاف والمنشور المثبت لا يدعمان نفس التموضع.', action: 'مواءمة الغلاف والمنشور المثبت مع وعد العلامة التجارية الأساسي.' },
+              { score: 3, label: 'واضح ومترابط تماماً', desc: 'الوصف والغلاف والمنشور المثبت يوضحون بدقة من نخدم، القيمة المقدمة، وسبب الثقة بنا.', action: 'الحفاظ على اتساق عرض القيمة وتحديث الغلاف مع كل حملة استراتيجية كبرى.' }
+            ]
+          },
+          {
+            id: 'q2',
+            enTag: 'Brand Visual Consistency',
+            title: 'اتساق الهوية البصرية وتصميمات الصفحة',
+            prompt: 'هل تعكس صورة الحساب، الغلاف، وتصميمات المنشورات هوية بصرية متماسكة يسهل التعرف عليها؟',
+            options: [
+              { score: 0, label: 'عشوائية بدون هوية', desc: 'التصميمات مختلفة في الألوان والخطوط في كل منشور ولا يوجد طابع بصري موحد للعلامة.', action: 'تأسيس دليل هوية بصرية واضح من ألوان وخطوط ونمط تصميم موحد لجميع منشورات الصفحة.' },
+              { score: 1, label: 'توحيد بسيط غير مستمر', desc: 'نضع الشعار على الصور فقط، لكن الألوان والخطوط تتغير باستمرار حسب المصمم.', action: 'بناء قوالب تصميمية متسقة لكل ركن من أركان المحتوى.' },
+              { score: 2, label: 'هوية جيدة بأخطاء بسيطة', desc: 'توجد ألوان وخطوط محددة في أغلب المنشورات، لكنها تحتاج إلى تطوير لتعكس قيمة أعلى.', action: 'رفع جودة الإخراج البصري وربط التصميم بشخصية العلامة التجارية ومستوى تسعيرها.' },
+              { score: 3, label: 'هوية احترافية مميزة', desc: 'بمجرد رؤية المنشور يتعرف العميل على علامتنا فوراً بفضل تماسك الألوان والخطوط.', action: 'توسيع تطبيق الهوية البصرية المتماسكة على الفيديوهات القصيرة والإعلانات.' }
+            ]
+          },
+          {
+            id: 'q3',
+            enTag: 'CTA & Trust Signals',
+            title: 'جاهزية نقاط التحويل وإشارات الثقة',
+            prompt: 'هل زر الإجراء الأساسي، بيانات الاتصال، والمنشور المثبت يوجهون الزائر لخطوة واضحة؟',
+            options: [
+              { score: 0, label: 'بيانات ناقصة أو قديمة', desc: 'بعض بيانات التواصل غير محدثة، ولا يوجد منشور مثبت أو زر إجراء واضح.', action: 'تحديث كافة بيانات الصفحة فوراً وتثبيت منشور تعريفي قوي ينتهي بدعوة واضحة للتواصل.' },
+              { score: 1, label: 'موجودة بدون توجيه', desc: 'البيانات الأساسية موجودة، لكن لا يوجد منشور مثبت يشرح رحلة العميل أو كيفية الطلب.', action: 'تصميم منشور مثبت يلخص أهم الخدمات، قصص النجاح، وطريقة الطلب المباشرة.' },
+              { score: 2, label: 'مكتملة وتحتاج تحسين', desc: 'البيانات والزر مفعّلون، لكن المنشور المثبت قديم أو لا يعكس أقوى عرض حالي لدينا.', action: 'ربط المنشور المثبت وزر الصفحة بالعرض الاستراتيجي الأهم للشركة هذا الربع.' },
+              { score: 3, label: 'مُحسّنة بالكامل للتحويل', desc: 'كل زائر يجد بيانات مكتملة، زر تواصل مباشر، ومنشوراً مثبتاً يقوده بسلاسة لاتخاذ قرار.', action: 'اختبار رسائل الترحيب التلقائية لزيادة نسبة نقر الزوار على زر التواصل.' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'content',
+        code: '02 / CONTENT STRATEGY',
+        title: 'استراتيجية المحتوى واتجاه التواصل',
+        shortTitle: 'استراتيجية المحتوى',
+        subtitle: 'هل يبني المحتوى علامة تجارية ويقرب العميل من الشراء، أم يضيف منشورات متفرقة فقط؟',
+        serviceKey: 'marketing',
+        questions: [
+          {
+            id: 'q4',
+            enTag: 'Brand vs. Activity',
+            title: 'ارتباط المحتوى بأهداف العمل ومشاكل العميل',
+            prompt: 'على أي أساس يتم اختيار موضوعات المنشورات على صفحتك حالياً؟',
+            options: [
+              { score: 0, label: 'نشر عشوائي عند التفرغ', desc: 'ننشر ما يتاح أمامنا من صور منتجات أو عروض دون خطة أو هدف تسويقي محدد.', action: 'التوقف عن النشر العشوائي وتحديد الأهداف التجارية والرسائل الأساسية قبل كتابة أي منشور.' },
+              { score: 1, label: 'تركيز بيعي مباشر فقط', desc: 'أغلب المنشورات عبارة عن دعوات شراء ومواصفات المنتج دون معالجة مخاوف العميل أو بناء ثقة.', action: 'إعادة توازن المحتوى ليخاطب احتياجات العميل وعوائق الشراء وليس فقط مواصفات المنتج.' },
+              { score: 2, label: 'محتوى متنوع لكن غير مترابط', desc: 'ننشر نصائح وعروضاً جيدة، لكن لا يوجد خيط استراتيجي يربط المحتوى برحلة اتخاذ القرار.', action: 'ربط كل منشور بمرحلة محددة في رحلة العميل من الوعي بالمشكلة إلى اختيار علامتنا.' },
+              { score: 3, label: 'محتوى استراتيجي موجه للنتائج', desc: 'كل قطعة محتوى تخدم تموضع العلامة، تجيب عن أسئلة العميل الحقيقية، وتمهد للبيع بذكاء.', action: 'تحليل أعلى المنشورات تحويلاً للعملاء وتحويلها إلى سلاسل محتوى وحملات إعلانية.' }
+            ]
+          },
+          {
+            id: 'q5',
+            enTag: 'Content Pillars & Video',
+            title: 'تنوع أركان وقوالب المحتوى والفيديو',
+            prompt: 'إلى أي مدى تتنوع أشكال المحتوى بين تعليمي، دراسات حالة وآراء عملاء، عروض، وفيديوهات قصيرة؟',
+            options: [
+              { score: 0, label: 'قالب واحد مكرر', desc: 'نعتمد على صور ثابتة متشابهة فقط دون استخدام الفيديوهات أو قصص نجاح العملاء.', action: 'إدخال أركان محتوى جديدة تشمل إثبات الكفاءة وتجارب العملاء والفيديوهات القصيرة.' },
+              { score: 1, label: 'تنوع محدود', desc: 'ننشر صوراً وبعض النصوص، ونادراً ما نشارك فيديوهات أو تجارب عملاء حقيقية.', action: 'تخصيص 30% من الخطة لدراسات الحالة وآراء العملاء و30% للفيديوهات التوضيحية القصيرة.' },
+              { score: 2, label: 'تنوع جيد بدون إثبات كافٍ', desc: 'نستخدم الصور والفيديوهات القصيرة، لكننا نحتاج إلى إبراز نتائج العملاء ودراسات الحالة بشكل أقوى.', action: 'توثيق نتائج العملاء والعمل السابق في منشورات تعرض التحدي والنتيجة لتعزيز الثقة.' },
+              { score: 3, label: 'منظومة محتوى متكاملة', desc: 'توازن مدروس بين المحتوى القيمي، الفيديوهات، إثبات الكفاءة، والعروض التسويقية.', action: 'إعادة تدوير المحتوى الأعلى أداءً عبر صيغ متعددة لتعظيم الوصول العضوي والإعلاني.' }
+            ]
+          },
+          {
+            id: 'q6',
+            enTag: 'Editorial Calendar',
+            title: 'الانتظام والتخطيط المسبق للنشر',
+            prompt: 'هل تلتزم الصفحة بجدول نشر منتظم ومخطط مسبقاً؟',
+            options: [
+              { score: 0, label: 'انقطاع طويل وغير منتظم', desc: 'قد تمر أسابيع دون نشر ثم ننشر عدة منشورات في يوم واحد.', action: 'وضع جدول نشر واقعي وثابت بمعدل 3 إلى 4 مرات أسبوعياً لضمان استمرارية الحضور الذهني.' },
+              { score: 1, label: 'نشر أسبوعي بدون خطة مسبقة', desc: 'نحاول النشر كل فترة، لكن يتم تحضير المنشور في نفس اليوم دون تخطيط شهري.', action: 'بناء خطة محتوى شهرية مسبقة مرتبطة بمواسم السوق وأولويات البيع.' },
+              { score: 2, label: 'خطة نصف شهرية', desc: 'نخطط المحتوى لعدة أيام قادمة ونلتزم بالنشر في أغلب الأوقات.', action: 'تطوير التخطيط ليكون شهرياً وربع سنوي بحيث تتكامل المنشورات مع الحملات الترويجية.' },
+              { score: 3, label: 'التزام كامل بخطة استراتيجية', desc: 'لدينا خطة محتوى شهرية واضحة ومعتمدة مسبقاً تربط المواسم بالعروض والرسائل.', action: 'مراجعة أداء الخطة شهرياً لتحديث أوقات النشر والموضوعات الأعلى تفاعلاً.' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'community',
+        code: '03 / AUDIENCE & COMMUNITY',
+        title: 'فهم الجمهور والتفاعل وبناء الثقة',
+        shortTitle: 'الجمهور والتفاعل',
+        subtitle: 'هل تصل إلى العميل الأنسب وتبني معه علاقة ثقة تدفعه للشراء والترشيح؟',
+        serviceKey: 'brand',
+        questions: [
+          {
+            id: 'q7',
+            enTag: 'Ideal Customer Fit',
+            title: 'تطابق المتابعين مع العميل الأنسب',
+            prompt: 'هل المتابعون الحاليون لصفحتك يمثلون الشريحة القادرة والمهتمة فعلياً بالشراء منك؟',
+            options: [
+              { score: 0, label: 'جمهور غير مستهدف', desc: 'أغلب المتابعين جاءوا من مسابقات أو إعلانات عامة أو شراء متابعين ولا يشترون.', action: 'إجراء تحليل للسوق وتقسيم شرائح العملاء وتوجيه المحتوى والإعلانات للشريحة المربحة.' },
+              { score: 1, label: 'تطابق ضعيف', desc: 'يوجد متابعون كثر ولكن معظمهم يبحث عن أسعار رخيصة جداً لا تناسب قيمة ما نقدمه.', action: 'تعديل نبرة الخطاب ومستوى الرسائل التسويقية لجذب الفئة التي تقدر الجودة والقيمة.' },
+              { score: 2, label: 'تطابق متوسط إلى جيد', desc: 'جزء جيد من الجمهور مناسب، لكننا نحتاج للوصول إلى شرائح أكثر قدرة على الشراء.', action: 'بناء رسائل مخصصة لكل شريحة عملاء واستهدافهم بحملات دقيقة.' },
+              { score: 3, label: 'جمهور نوعي ومستهدف بدقة', desc: 'متابعو الصفحة هم فعلاً صناع القرار والعملاء المستهدفون في سوقنا.', action: 'الاستفادة من بيانات المتابعين لبناء جماهير مشابهة في الحملات الإعلانية للتوسع.' }
+            ]
+          },
+          {
+            id: 'q8',
+            enTag: 'Quality of Engagement',
+            title: 'جودة التفاعل العضوي والحقيقي',
+            prompt: 'كيف يبدو شكل التفاعل على منشورات الصفحة؟',
+            options: [
+              { score: 0, label: 'شبه منعدم', desc: 'المنشورات تحصل على إعجابات قليلة جداً ولا توجد تعليقات أو مشاركات حقيقية.', action: 'صياغة مقدمات قوية تلامس المشاكل اليومية للعميل وتدعوه للمشاركة والرد.' },
+              { score: 1, label: 'إعجابات سطحية فقط', desc: 'نحصل على بعض الإعجابات، لكن نادراً ما يسأل أحد عن التفاصيل أو يشارك المحتوى.', action: 'دمج أسئلة تشخيصية ودعوات تفاعلية واضحة في نهاية كل منشور لتحفيز المحادثات.' },
+              { score: 2, label: 'استفسارات على العروض فقط', desc: 'التفاعل يظهر فقط عند نشر خصومات أو إعلانات ممولة، ويقل في المحتوى العادي.', action: 'تطوير محتوى قصصي وتطبيقي يرفع التفاعل الطبيعي حتى بدون إعلانات.' },
+              { score: 3, label: 'نقاشات، استفسارات ومشاركات مستمرة', desc: 'الجمهور يتفاعل، يحفظ المنشورات، يطرح أسئلة شرائية، ويشارك المحتوى مع غيره.', action: 'تحويل الأسئلة المتكررة في التعليقات إلى محتوى جديد وعروض مخصصة.' }
+            ]
+          },
+          {
+            id: 'q9',
+            enTag: 'Community Management',
+            title: 'إدارة التعليقات وبناء الثقة العلنية',
+            prompt: 'كيف تتعامل الصفحة مع التعليقات والاستفسارات أو الملاحظات أمام الزوار؟',
+            options: [
+              { score: 0, label: 'تأخر أو تجاهل للتعليقات', desc: 'كثير من التعليقات تظل بدون رد لفترات طويلة مما يضعف ثقة الزائر الجديد.', action: 'تخصيص مسؤول ومواعيد محددة للرد الاحترافي السريع على جميع التعليقات.' },
+              { score: 1, label: 'ردود آلية مكررة فقط', desc: 'نكتفي بكتابة تم الرد في الرسائل على كل التعليقات دون تقديم إجابة مفيدة علناً.', action: 'كتابة ردود علنية ودودة ومفيدة تعكس خبرة العلامة قبل توجيه العميل للرسائل الخاصة.' },
+              { score: 2, label: 'ردود جيدة لكن غير منتظمة', desc: 'نرد بشكل لطيف، لكن أحياناً نتأخر أو لا نستثمر التعليقات الإيجابية لإبراز الثقة.', action: 'وضع دليل لنبرة الصوت للرد على الاستفسارات والاعتراضات باحترافية.' },
+              { score: 3, label: 'إدارة مجتمع احترافية تبني الثقة', desc: 'نرد بسرعة ولباقة، نوضح القيمة علناً، ونتعامل مع أي ملاحظة بشفافية تزيد المصداقية.', action: 'توثيق أبرز تعليقات الإشادة وتحويلها إلى منشورات إثبات ثقة دورية.' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'campaigns',
+        code: '04 / CAMPAIGNS & FUNNEL',
+        title: 'الحملات الإعلانية وتطوير العروض',
+        shortTitle: 'الحملات والعروض',
+        subtitle: 'هل تمتلك عروضاً قوية وحملات مبنية على رحلة العميل أم تعتمد على ترويج عشوائي؟',
+        serviceKey: 'growth',
+        questions: [
+          {
+            id: 'q10',
+            enTag: 'Offer Architecture',
+            title: 'قوة وتنافسية العروض التسويقية',
+            prompt: 'ما مدى جاذبية ووضوح العروض التي تقدمها الصفحة لدفع العميل للشراء الآن؟',
+            options: [
+              { score: 0, label: 'لا توجد عروض مصممة', desc: 'نعرض المنتجات أو الخدمات بشكل تقليدي دون باقات، ضمانات، أو حافز واضح للشراء.', action: 'تطوير عروض قيمة تقلل مخاطرة الشراء وتبرز العائد الذي يحصل عليه العميل.' },
+              { score: 1, label: 'حرق أسعار وخصومات فقط', desc: 'طريقتنا الوحيدة لجذب العملاء هي خفض السعر مما يقلل هامش الربح ويضعف صورة العلامة.', action: 'استبدال الخصومات العشوائية بباقات قيمة مضافة تحمي الربحية.' },
+              { score: 2, label: 'عروض جيدة تحتاج صياغة أقوى', desc: 'لدينا خدمات ممتازة، لكن طريقة تقديم العرض لا تبرز القيمة الكاملة مقارنة بالسعر.', action: 'إعادة صياغة العرض التسويقي ليركز على النتيجة النهائية للعميل وإزالة عوائق القرار.' },
+              { score: 3, label: 'عروض استراتيجية لا تُقاوم', desc: 'عروضنا مصممة بذكاء، واضحة القيمة، ومرتبطة باحتياج العميل الفعلي مع محفزات قرار قوية.', action: 'اختبار زوايا إعلانية متعددة لنفس العرض للوصول إلى شرائح أوسع.' }
+            ]
+          },
+          {
+            id: 'q11',
+            enTag: 'Campaign Funnel Structure',
+            title: 'هيكلة الحملات الإعلانية الممولة',
+            prompt: 'كيف تخطط وتدير الإعلانات الممولة لصفحتك على فيسبوك؟',
+            options: [
+              { score: 0, label: 'بدون إعلانات أو ترويج عشوائي', desc: 'لا نعلن بانتظام، أو نضغط زر ترويج المنشور المباشر دون إعدادات استهداف دقيقة.', action: 'إيقاف الترويج العشوائي وبناء حملات منظمة عبر مدير الإعلانات بأهداف واضحة.' },
+              { score: 1, label: 'حملة واحدة للجمهور البارد فقط', desc: 'نشغل إعلانات رسائل مباشرة للجمهور الجديد فقط دون إعادة استهداف من تفاعل معنا.', action: 'بناء مسار إعلاني متكامل يشمل حملات إعادة استهداف للمتفاعلين ومشاهدي الفيديو.' },
+              { score: 2, label: 'حملات منتظمة بدون تنويع إبداعي', desc: 'نستخدم مدير الإعلانات، لكن نعتمد على إعلان واحد أو اثنين لفترات طويلة حتى يقل الأداء.', action: 'تطوير منظومة اختبار إعلانات تشمل زوايا بيعية وفيديوهات متعددة.' },
+              { score: 3, label: 'نظام حملات متكامل متعدد المراحل', desc: 'ندير حملات جذب، إقناع، وإعادة استهداف مترابطة مع اختبار مستمر للرسائل والجمهور.', action: 'التوسع المدروس في الميزانية الإعلانية مع الحفاظ على تكلفة اكتساب العميل.' }
+            ]
+          },
+          {
+            id: 'q12',
+            enTag: 'Message-to-Market Match',
+            title: 'ترابط الرسالة بين الإعلان وتجربة العميل',
+            prompt: 'عندما يضغط العميل على إعلانك أو منشورك، هل يجد تجربة متوافقة ومكملة لنفس الوعد؟',
+            options: [
+              { score: 0, label: 'فجوة كبيرة وتشتيت للعميل', desc: 'العميل يضغط على الإعلان فلا يجد تفاصيل واضحة أو يضطر لشرح طلبه من الصفر في الرسائل.', action: 'ربط كل إعلان برسالة ترحيب مخصصة أو صفحة هبوط تكمل نفس العرض المذكور في الإعلان.' },
+              { score: 1, label: 'ترابط ضعيف', desc: 'الإعلان يتحدث عن عرض معين، بينما الصفحة أو الرد التلقائي يتحدث بشكل عام عن الشركة.', action: 'توحيد الرسالة والأسئلة التلقائية داخل المحادثة لتتطابق مع كل حملة إعلانية.' },
+              { score: 2, label: 'ترابط جيد في أغلب الحملات', desc: 'العميل يفهم العرض عند التواصل، لكن خطوات إتمام الطلب تحتاج إلى تبسيط أكثر.', action: 'تقليل عدد الخطوات المطلوبة من العميل بين النقر على الإعلان وإتمام الطلب أو الحجز.' },
+              { score: 3, label: 'رحلة عميل سلسة ومترابطة بالكامل', desc: 'من لحظة رؤية الإعلان وحتى التحدث مع المبيعات، يشعر العميل بتجربة متسقة وسريعة.', action: 'تتبع معدل التسرب في كل خطوة من الرحلة لتحسين نسبة التحويل الكلية.' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'conversion',
+        code: '05 / CONVERSION & MEASUREMENT',
+        title: 'تحويل الرسائل إلى مبيعات والقياس والتحسين',
+        shortTitle: 'التحويل والقياس',
+        subtitle: 'هل تتحول الرسائل والاستفسارات إلى مبيعات حقيقية وهل تقيس الأثر التجاري بدقة؟',
+        serviceKey: 'consulting',
+        questions: [
+          {
+            id: 'q13',
+            enTag: 'Inbox Sales Process',
+            title: 'سرعة واحترافية البيع عبر الرسائل',
+            prompt: 'كيف يتم التعامل مع الرسائل الواردة والاستفسارات عن السعر داخل صندوق رسائل الصفحة؟',
+            options: [
+              { score: 0, label: 'رد متأخر ومختصر بالسعر فقط', desc: 'نرد بعد ساعات بذكر السعر فقط، وغالباً يختفي العميل بعدها دون شراء.', action: 'وضع سيناريو مبيعات يبدأ بفهم احتياج العميل وتوضيح القيمة قبل طرح السعر.' },
+              { score: 1, label: 'رد سريع لكن بدون منهجية بيع', desc: 'نرد بسرعة، لكن المحادثة تنتهي عند إرسال قائمة الأسعار دون قيادة العميل للخطوة التالية.', action: 'تدريب مسؤول الرسائل على طرح أسئلة تأهيلية وإنهاء كل محادثة بدعوة واضحة لإتمام الطلب.' },
+              { score: 2, label: 'منهجية جيدة وتحتاج أتمتة', desc: 'فريقنا يرد بشكل جيد، لكن الضغط الكبير يسبب تأخراً أحياناً في أوقات الذروة.', action: 'تفعيل الردود التلقائية الذكية وتصنيف المحادثات لضمان سرعة الاستجابة في أول 5 دقائق.' },
+              { score: 3, label: 'نظام مبيعات محترف وعالي التحويل', desc: 'استجابة فورية، أسئلة لتشخيص احتياج العميل، عرض قيمة مقنع، وإغلاق بيعي احترافي.', action: 'تحليل أسباب عدم الشراء في المحادثات لتطوير ردود جاهزة على الاعتراضات الشائعة.' }
+            ]
+          },
+          {
+            id: 'q14',
+            enTag: 'Lead Nurturing & CRM',
+            title: 'متابعة العملاء المحتملين وإعادة التواصل',
+            prompt: 'ماذا يحدث للعملاء الذين تواصلوا مع الصفحة وسألوا عن الخدمة لكنهم لم يشتروا فوراً؟',
+            options: [
+              { score: 0, label: 'تُترك المحادثات وتضيع الفرص', desc: 'لا نسجل بياناتهم ولا نعاود التواصل معهم أبداً بعد انتهاء المحادثة الأولى.', action: 'بناء سجل للعملاء المحتملين وتطبيق نظام متابعة منظم بعد 48 ساعة.' },
+              { score: 1, label: 'متابعة عشوائية غير منتظمة', desc: 'نتذكر بعض العملاء أحياناً فنراسلهم، لكن لا يوجد نظام لتصنيف المهتمين ومتابعتهم.', action: 'استخدام تصنيفات الرسائل في أداة إدارة الأعمال لفرز المهتمين ومتابعتهم بانتظام.' },
+              { score: 2, label: 'تسجيل البيانات بدون خطة إعادة تنشيط', desc: 'نحتفظ بأرقام وبيانات المهتمين، لكن نادراً ما نرسل لهم عروضاً مخصصة لإغلاق البيع.', action: 'تصميم حملات إعادة تنشيط وعروض خاصة للعملاء الذين استفسروا خلال آخر 30 إلى 60 يوماً.' },
+              { score: 3, label: 'نظام متابعة وتصنيف متكامل', desc: 'كل عميل محتمل يتم تصنيفه ومتابعته بشكل منهجي عبر الرسائل أو الواتساب حتى إتمام البيع.', action: 'قياس نسبة المبيعات العائدة من المتابعة وتعظيم القيمة الدائمة للعميل.' }
+            ]
+          },
+          {
+            id: 'q15',
+            enTag: 'Impact vs. Vanity Metrics',
+            title: 'قياس الأثر التجاري ومؤشرات الأداء',
+            prompt: 'ما هي الأرقام التي تتابعها لتقييم نجاح صفحتك على فيسبوك؟',
+            options: [
+              { score: 0, label: 'لا نتابع أرقاماً واضحة', desc: 'نعمل بالانطباع العام دون مراجعة تقارير الأداء أو معرفة تكلفة الحصول على عميل.', action: 'تحديد 3 إلى 5 مؤشرات أداء رئيسية مرتبطة بالمبيعات ومراجعتها أسبوعياً وشهرياً.' },
+              { score: 1, label: 'نتابع الإعجابات والمشاهدات فقط', desc: 'نركز على عدد الإعجابات والمتابعين دون ربطها بعدد العملاء الفعليين أو الإيرادات.', action: 'الانتقال من قياس النشاط الظاهري إلى قياس الأثر الفعلي مثل تكلفة الرسالة المؤهلة ومعدل الإغلاق.' },
+              { score: 2, label: 'نحسب تكلفة الإعلان والرسائل فقط', desc: 'نعرف كم صرفنا وكم رسالة وصلت، لكن لا نربط ذلك بدقة بصافي المبيعات والربحية.', action: 'ربط تقارير التسويق ببيانات المبيعات الفعلية لحساب العائد على الإنفاق الإعلاني بدقة.' },
+              { score: 3, label: 'قياس شامل للأثر والعائد التجاري', desc: 'نتابع رحلة العميل رقمياً من الانطباع الأول وحتى تكلفة الاكتساب وصافي المبيعات المحققة.', action: 'استخدام البيانات الشهرية لتحسين توزيع الميزانية على القنوات والعروض الأعلى ربحية.' }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const SERVICES_CATALOG = {
+      consulting: {
+        code: '01 / CONSULTING — استشارات التسويق الاستراتيجي',
+        name: 'جلسة تشخيص واستشارات التسويق الاستراتيجي وبناء نظام النمو',
+        headline: 'صفحتك لا تحتاج إلى مزيد من المنشورات المتفرقة؛ بل تحتاج إلى تشخيص استراتيجي وخارطة طريق تربط التسويق بالمبيعات.',
+        description: 'بناءً على نتائج فحص صفحتك، هناك فجوات في ربط الأنشطة التسويقية بالنتيجة التجارية النهائية. من خلال استشارات التسويق الاستراتيجي، نعيد بناء النظام التسويقي ليبدأ من أهداف عملك وينتهي بمبيعات قابلة للقياس.',
+        bullets: [
+          'تشخيص شامل للوضع التسويقي وتحديد الفجوات والعوائق البيعية',
+          'تحليل السوق والمنافسين وتحديد فرص النمو الأسرع تحقيقاً للعائد',
+          'تصميم نظام متكامل يربط المحتوى والإعلانات بعملية البيع في الرسائل',
+          'وضع خارطة طريق تنفيذية ومؤشرات أداء واضحة للفريق'
+        ]
+      },
+      brand: {
+        code: '02 / BRAND — استراتيجية العلامة التجارية والتموضع',
+        name: 'تطوير استراتيجية العلامة التجارية، التموضع، وعرض القيمة',
+        headline: 'التحدي الأول في صفحتك هو وضوح التموضع وعرض القيمة: العميل يحتاج أن يفهم فوراً لماذا يختارك أنت وليس منافسك.',
+        description: 'أظهرت نتائج التقييم أن صفحتك بحاجة إلى تقوية الهوية والتموضع ورسائل القيمة قبل ضخ ميزانيات إعلانية أكبر. عندما يتضح التموضع وتتماسك الهوية، ترتفع ثقة العميل وتنخفض تكلفة إقناعه بالشراء.',
+        bullets: [
+          'تحديد الجمهور المستهدف الأنسب وتقسيم شرائح العملاء بدقة',
+          'صياغة عرض القيمة التنافسي ورسائل العلامة الأساسية',
+          'ضبط شخصية العلامة التجارية وتوحيد اتجاهها البصري والاتصالي',
+          'تهيئة واجهة الصفحة والمنشور المثبت ليعكسوا الثقة والاحترافية'
+        ]
+      },
+      marketing: {
+        code: '03 / MARKETING — استراتيجية التسويق والمحتوى المتكامل',
+        name: 'بناء استراتيجية التسويق واتجاه المحتوى ورحلة العميل',
+        headline: 'أكبر فرصة لتطوير صفحتك الآن هي تحويل المحتوى من نشر يومي إلى نظام استراتيجي يبني العلامة ويقود للشراء.',
+        description: 'تشير إجاباتك إلى أن الصفحة بحاجة إلى استراتيجية محتوى وتواصل مترابطة تعالج مشاكل العميل وتثبت كفاءة علامتك التجارية، بدلاً من الاكتفاء بمنشورات متفرقة لا تصنع أثراً تراكمياً.',
+        bullets: [
+          'تحديد أركان المحتوى المرتبطة بأهداف العمل والمبيعات',
+          'تصميم رحلة العميل عبر المحتوى من الوعي بالمشكلة إلى طلب الخدمة',
+          'وضع خطة محتوى استراتيجية متوازنة تشمل الفيديو ودراسات الحالة والعروض',
+          'مواءمة رسائل المحتوى مع أولويات البيع ومواسم السوق'
+        ]
+      },
+      growth: {
+        code: '04 / GROWTH — استراتيجية النمو والحملات وتطوير العروض',
+        name: 'بناء استراتيجية النمو، هيكلة العروض، وتخطيط الحملات الإعلانية',
+        headline: 'صفحتك تمتلك أساساً جيداً، والخطوة الحاسمة الآن هي بناء عروض قوية وحملات إعلانية تضاعف الاستحواذ والتحويل.',
+        description: 'يكشف التشخيص أن الفجوة الأهم لديك تكمن في هندسة العروض التسويقية وهيكلة مسار الحملات الإعلانية. تطوير العرض الصحيح وربطه بحملات جذب وإعادة استهداف سيحول صفحتك إلى محرك مبيعات مستدام.',
+        bullets: [
+          'تطوير وهندسة العروض التسويقية لزيادة معدل الاستجابة',
+          'تصميم مسار الحملات الإعلانية المتكامل من الجذب إلى إعادة الاستهداف والتحويل',
+          'مواءمة الرسالة الإعلانية مع سيناريو البيع داخل الرسائل',
+          'بناء خارطة نمو لزيادة المبيعات وتقليل تكلفة اكتساب العميل'
+        ]
+      }
+    };
+
+    const state = {
+      activePillarIndex: 0,
+      showAllQuestions: false,
+      answers: {},
+      pageName: '',
+      clientName: '',
+      industry: 'التجارة الإلكترونية والبيع بالتجزئة',
+      primaryGoal: 'ننشر باستمرار ولا نرى أثرًا واضحاً في المبيعات',
+      pageUrl: ''
+    };
+
+    function showToast(message, isError) {
+      const container = document.getElementById('toast-container');
+      const icon = document.getElementById('toast-icon');
+      const text = document.getElementById('toast-message');
+      if (!container || !icon || !text) return;
+
+      text.textContent = message;
+      icon.style.background = isError ? '#DC2626' : '#20A464';
+      container.classList.remove('hidden');
+
+      if (window._toastTimer) clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(function () {
+        container.classList.add('hidden');
+      }, 3400);
+    }
+
+    function calculateAuditMetrics() {
+      let totalRaw = 0;
+      const maxRaw = 45;
+      let answeredCount = 0;
+
+      const pillarMetrics = PILLARS.map(function (pillar) {
+        let pillarRaw = 0;
+        let pillarAnswered = 0;
+        pillar.questions.forEach(function (q) {
+          if (state.answers[q.id] !== undefined) {
+            pillarRaw += state.answers[q.id];
+            totalRaw += state.answers[q.id];
+            pillarAnswered++;
+            answeredCount++;
+          }
+        });
+        const scoreOutOf20 = Math.round((pillarRaw / 9) * 20);
+        const pct = Math.round((pillarRaw / 9) * 100);
+        return {
+          id: pillar.id,
+          code: pillar.code,
+          title: pillar.title,
+          shortTitle: pillar.shortTitle,
+          serviceKey: pillar.serviceKey,
+          raw: pillarRaw,
+          answered: pillarAnswered,
+          totalQuestions: pillar.questions.length,
+          scoreOutOf20: scoreOutOf20,
+          pct: pct
+        };
+      });
+
+      const totalScore = Math.round((totalRaw / maxRaw) * 100);
+      const sortedByPct = pillarMetrics.slice().sort(function (a, b) { return a.pct - b.pct; });
+      const weakestPillar = sortedByPct[0];
+      const strongestPillar = sortedByPct[sortedByPct.length - 1];
+
+      return {
+        totalScore: totalScore,
+        answeredCount: answeredCount,
+        totalQuestions: 15,
+        pillarMetrics: pillarMetrics,
+        weakestPillar: weakestPillar,
+        strongestPillar: strongestPillar
+      };
+    }
+
+    function updateToggleViewButtonText() {
+      const btn = document.getElementById('btn-toggle-view-mode');
+      if (!btn) return;
+      btn.textContent = state.showAllQuestions
+        ? 'عرض محور واحد في كل خطوة'
+        : 'عرض جميع الأسئلة في صفحة واحدة';
+    }
+
+    function renderPillarTabs() {
+      const container = document.getElementById('pillar-tabs-container');
+      if (!container) return;
+
+      const metrics = calculateAuditMetrics();
+      container.innerHTML = PILLARS.map(function (pillar, idx) {
+        const pm = metrics.pillarMetrics[idx];
+        const isActive = !state.showAllQuestions && state.activePillarIndex === idx;
+        const isCompleted = pm.answered === pm.totalQuestions;
+        let classes = 'pillar-tab';
+        if (isActive) classes += ' active';
+        else if (isCompleted) classes += ' completed';
+
+        return (
+          '<button type="button" data-pillar-idx="' + idx + '" class="' + classes + '">' +
+            '<span class="font-en text-xs font-bold text-[#146EF5]" dir="ltr">0' + (idx + 1) + '</span>' +
+            '<span>' + pillar.shortTitle + '</span>' +
+            '<span class="font-en text-[11px] px-2 py-0.5 rounded ' + (isActive ? 'bg-slate-800 text-slate-200' : 'bg-[#F5F6F8] text-[#667085]') + '" dir="ltr">' + pm.answered + '/3</span>' +
+          '</button>'
+        );
+      }).join('');
+
+      const buttons = container.querySelectorAll('button[data-pillar-idx]');
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function () {
+          const idx = parseInt(this.getAttribute('data-pillar-idx'), 10);
+          state.showAllQuestions = false;
+          state.activePillarIndex = idx;
+          updateToggleViewButtonText();
+          renderWorkspace();
+        });
+      }
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById('questions-container');
+      if (!container) return;
+
+      const pillarsToRender = state.showAllQuestions
+        ? PILLARS.map(function (p, i) { return { pillar: p, index: i }; })
+        : [{ pillar: PILLARS[state.activePillarIndex], index: state.activePillarIndex }];
+
+      container.innerHTML = pillarsToRender.map(function (entry) {
+        const pillar = entry.pillar;
+        const index = entry.index;
+
+        const questionsHtml = pillar.questions.map(function (q, qIdx) {
+          const globalNumber = index * 3 + qIdx + 1;
+          const selectedScore = state.answers[q.id];
+
+          const optionsHtml = q.options.map(function (opt) {
+            const isSelected = selectedScore === opt.score;
+            const scoreBadgeColor = opt.score === 3
+              ? 'bg-[#20A464]/10 text-[#20A464]'
+              : opt.score === 2
+                ? 'bg-[#146EF5]/10 text-[#146EF5]'
+                : opt.score === 1
+                  ? 'bg-[#D97706]/10 text-[#D97706]'
+                  : 'bg-[#DC2626]/10 text-[#DC2626]';
+
+            return (
+              '<button type="button" data-qid="' + q.id + '" data-score="' + opt.score + '" class="option-card ' + (isSelected ? 'selected' : '') + '">' +
+                '<div class="option-radio"></div>' +
+                '<div class="flex-1">' +
+                  '<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">' +
+                    '<span class="font-bold text-sm text-[#071A33]">' + opt.label + '</span>' +
+                    '<span class="font-en text-[11px] font-bold px-2 py-0.5 rounded ' + scoreBadgeColor + '" dir="ltr">' + opt.score + ' / 3</span>' +
+                  '</div>' +
+                  '<p class="text-xs text-[#667085] m-0">' + opt.desc + '</p>' +
+                '</div>' +
+              '</button>'
+            );
+          }).join('');
+
+          const numStr = globalNumber < 10 ? '0' + globalNumber : '' + globalNumber;
+          return (
+            '<div class="editorial-card p-5 sm:p-6">' +
+              '<div class="flex flex-wrap items-center justify-between gap-2 mb-3">' +
+                '<div class="flex flex-wrap items-center gap-2">' +
+                  '<span class="font-en text-xs font-bold text-[#146EF5] bg-[#146EF5]/10 px-2.5 py-1 rounded" dir="ltr">' +
+                    'QUESTION ' + numStr + ' / 15' +
+                  '</span>' +
+                  '<span class="en-badge" dir="ltr">' + q.enTag + '</span>' +
+                '</div>' +
+                '<span class="text-xs font-semibold ' + (selectedScore !== undefined ? 'text-[#20A464]' : 'text-[#667085]') + '">' +
+                  (selectedScore !== undefined ? '✓ تم الاختيار' : 'اختر الإجابة الأقرب لواقع صفحتك') +
+                '</span>' +
+              '</div>' +
+              '<h3 class="text-base sm:text-lg font-bold text-[#071A33] mb-2">' + q.title + '</h3>' +
+              '<p class="text-xs sm:text-sm text-[#667085] mb-4">' + q.prompt + '</p>' +
+              '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' +
+                optionsHtml +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+
+        return (
+          '<div class="space-y-4">' +
+            '<div class="bg-[#071A33] text-white rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">' +
+              '<div>' +
+                '<span class="font-en text-xs font-bold text-[#146EF5] uppercase block mb-1" dir="ltr">' + pillar.code + '</span>' +
+                '<h2 class="text-base sm:text-lg font-bold text-white mb-1">' + pillar.title + '</h2>' +
+                '<p class="text-xs text-slate-300 m-0">' + pillar.subtitle + '</p>' +
+              '</div>' +
+              '<span class="text-xs bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg self-start whitespace-nowrap">' +
+                '20 نقطة كحد أقصى' +
+              '</span>' +
+            '</div>' +
+            questionsHtml +
+          '</div>'
+        );
+      }).join('');
+
+      const cards = container.querySelectorAll('button.option-card');
+      for (let j = 0; j < cards.length; j++) {
+        cards[j].addEventListener('click', function () {
+          const qid = this.getAttribute('data-qid');
+          const score = parseInt(this.getAttribute('data-score'), 10);
+          state.answers[qid] = score;
+          renderWorkspace();
+          const currentMetrics = calculateAuditMetrics();
+          const tabScoreBadge = document.getElementById('tab-results-score-badge');
+          if (tabScoreBadge) {
+            tabScoreBadge.textContent = currentMetrics.totalScore + ' / 100';
+          }
+          if (currentMetrics.answeredCount === 15) {
+            showToast('اكتملت جميع الأسئلة الـ 15! جاري عرض النتيجة والتقرير الشامل...', false);
+            setTimeout(function () {
+              buildDiagnosticReport();
+            }, 350);
+          }
+        });
+      }
+    }
+
+    function renderSidebarAndControls() {
+      const metrics = calculateAuditMetrics();
+      const pctDone = Math.round((metrics.answeredCount / metrics.totalQuestions) * 100);
+
+      const badgeText = document.getElementById('progress-badge-text');
+      if (badgeText) badgeText.textContent = 'تمت الإجابة على ' + metrics.answeredCount + ' من ' + metrics.totalQuestions;
+
+      const progBar = document.getElementById('overall-progress-bar');
+      if (progBar) progBar.style.width = pctDone + '%';
+
+      const liveScorePill = document.getElementById('live-score-pill');
+      if (liveScorePill) liveScorePill.textContent = metrics.totalScore + ' / 100';
+
+      const sidebarPillars = document.getElementById('sidebar-pillars-summary');
+      if (sidebarPillars) {
+        sidebarPillars.innerHTML = metrics.pillarMetrics.map(function (pm, idx) {
+          const barColor = pm.pct >= 75 ? '#20A464' : pm.pct >= 45 ? '#146EF5' : '#D97706';
+          return (
+            '<div>' +
+              '<div class="flex items-center justify-between gap-2 text-xs mb-1.5">' +
+                '<span class="font-semibold text-[#071A33]">0' + (idx + 1) + '. ' + pm.shortTitle + '</span>' +
+                '<span class="font-en font-bold text-[#667085]" dir="ltr">' + pm.scoreOutOf20 + '/20 (' + pm.answered + '/3)</span>' +
+              '</div>' +
+              '<div class="w-full h-1.5 bg-[#F5F6F8] rounded-full overflow-hidden border border-[#E5E7EB]">' +
+                '<div class="h-full" style="width: ' + pm.pct + '%; background-color: ' + barColor + '; transition: width 0.3s ease;"></div>' +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      const hint = document.getElementById('sidebar-incomplete-hint');
+      if (hint) {
+        if (metrics.answeredCount === 15) {
+          hint.textContent = '✓ اكتملت جميع الأسئلة! اضغط أعلاه لعرض التقرير وتحميل الـ PDF.';
+          hint.className = 'text-[11px] text-[#20A464] font-semibold text-center mt-2 m-0';
+        } else {
+          hint.textContent = 'متبقي ' + (15 - metrics.answeredCount) + ' سؤال لإصدار التشخيص الدقيق الكامل.';
+          hint.className = 'text-[11px] text-[#667085] text-center mt-2 m-0';
+        }
+      }
+
+      const prevBtn = document.getElementById('btn-prev-pillar');
+      const nextBtn = document.getElementById('btn-next-pillar');
+      const genBtn = document.getElementById('btn-generate-report');
+      const footerHint = document.getElementById('step-footer-hint');
+
+      if (prevBtn && nextBtn && genBtn) {
+        if (state.showAllQuestions) {
+          prevBtn.classList.add('hidden');
+          nextBtn.classList.add('hidden');
+          genBtn.classList.remove('hidden');
+          if (footerHint) footerHint.textContent = 'أجبت على ' + metrics.answeredCount + ' من 15 سؤالاً — اضغط لإصدار التقرير الشامل.';
+        } else {
+          if (state.activePillarIndex === 0) prevBtn.classList.add('hidden');
+          else prevBtn.classList.remove('hidden');
+
+          const isLastPillar = state.activePillarIndex === PILLARS.length - 1;
+          if (isLastPillar) nextBtn.classList.add('hidden');
+          else nextBtn.classList.remove('hidden');
+
+          if (isLastPillar || metrics.answeredCount === 15) genBtn.classList.remove('hidden');
+          else genBtn.classList.add('hidden');
+
+          if (footerHint) {
+            footerHint.textContent = 'المحور ' + (state.activePillarIndex + 1) + ' من 5 — تم إكمال ' + metrics.answeredCount + ' من 15 سؤالاً إجمالاً';
+          }
+        }
+      }
+    }
+
+    function renderWorkspace() {
+      renderPillarTabs();
+      renderQuestions();
+      renderSidebarAndControls();
+    }
+
+    function syncInputsToState() {
+      const pageNameEl = document.getElementById('input-page-name');
+      const clientNameEl = document.getElementById('input-client-name');
+      const industryEl = document.getElementById('input-industry');
+      const goalEl = document.getElementById('input-primary-goal');
+      const urlEl = document.getElementById('input-page-url');
+
+      if (pageNameEl) state.pageName = pageNameEl.value.trim();
+      if (clientNameEl) state.clientName = clientNameEl.value.trim();
+      if (industryEl) state.industry = industryEl.value;
+      if (goalEl) state.primaryGoal = goalEl.value;
+      if (urlEl) state.pageUrl = urlEl.value.trim();
+    }
+
+    function buildDiagnosticReport() {
+      syncInputsToState();
+      const metrics = calculateAuditMetrics();
+
+      if (metrics.answeredCount < 15) {
+        showToast('ملاحظة: أجبت على ' + metrics.answeredCount + ' من 15 سؤالاً. تم احتساب الأسئلة المتبقية بقيمة افتراضية ويمكنك تعديلها في أي وقت.', false);
+        PILLARS.forEach(function (p) {
+          p.questions.forEach(function (q) {
+            if (state.answers[q.id] === undefined) {
+              state.answers[q.id] = 1;
+            }
+          });
+        });
+        renderWorkspace();
+      }
+
+      const finalMetrics = calculateAuditMetrics();
+      const score = finalMetrics.totalScore;
+      const displayPageName = state.pageName || 'صفحة العلامة التجارية';
+      const displayClientName = state.clientName ? ' — ' + state.clientName : '';
+
+      document.getElementById('report-page-name').textContent = displayPageName + displayClientName;
+      document.getElementById('report-industry').textContent = state.industry;
+      const todayStr = new Date().toISOString().split('T')[0];
+      document.getElementById('report-date').textContent = todayStr;
+      document.getElementById('report-client-goal-tag').textContent = 'الهدف الحالي: ' + state.primaryGoal;
+
+      document.getElementById('report-total-score').textContent = score;
+      const circle = document.getElementById('report-score-circle');
+      const circumference = 314.16;
+      const offset = circumference - (score / 100) * circumference;
+      if (circle) {
+        circle.style.strokeDashoffset = offset;
+        circle.setAttribute('stroke', score >= 75 ? '#20A464' : score >= 50 ? '#146EF5' : '#D97706');
+      }
+
+      let tierLabel = '';
+      let tierBadgeClass = '';
+      let tierShort = '';
+      let verdictTitle = '';
+      let verdictSummary = '';
+
+      if (score < 40) {
+        tierLabel = 'مرحلة الأنشطة المتفرقة — تحتاج تأسيس استراتيجي';
+        tierBadgeClass = 'inline-block px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#DC2626] text-white mb-2';
+        tierShort = 'الصفحة تعمل حالياً كرد فعل يومي دون تموضع واضح أو نظام تحويل مترابط.';
+        verdictTitle = 'تشخيص «' + displayPageName + '»: الصفحة تبذل مجهوداً في النشر لكنها تفتقد إلى نظام نمو مترابط';
+        verdictSummary = 'توضح نتيجة التقييم (' + score + ' من 100) أن الصفحة تعاني من فجوة بين النشاط اليومي والهدف التجاري. قبل زيادة الإنفاق الإعلاني أو كثافة النشر، تحتاج العلامة إلى ضبط التموضع وعرض القيمة، وتوحيد الرسائل التسويقية، وبناء مسار واضح يحول الزوار والمتفاعلين إلى عملاء فعليين.';
+      } else if (score < 68) {
+        tierLabel = 'مرحلة الحضور الجزئي — فرص نمو غير مستغلة';
+        tierBadgeClass = 'inline-block px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#D97706] text-white mb-2';
+        tierShort = 'توجد ركائز جيدة في الصفحة، لكن غياب الترابط بين المحتوى والعروض والرسائل يضيع جزءاً كبيراً من العائد.';
+        verdictTitle = 'تشخيص «' + displayPageName + '»: حضور جيد ولكن هناك فرص مبيعات ضائعة في رحلة العميل';
+        verdictSummary = 'حصلت صفحتك على (' + score + ' من 100)، مما يعني أن لديك أساساً يمكن البناء عليه، لكن الأنشطة التسويقية لا تعمل كمنظومة واحدة. معالجة الفجوة الأضعف في محور (' + finalMetrics.weakestPillar.shortTitle + ') وربط المحتوى بهندسة عروض قوية وسيناريو بيع احترافي في الرسائل سيحدث نقلة ملموسة في المبيعات.';
+      } else if (score < 85) {
+        tierLabel = 'مرحلة الأداء المتقدم — جاهزة للتوسع ومضاعفة العائد';
+        tierBadgeClass = 'inline-block px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#146EF5] text-white mb-2';
+        tierShort = 'الصفحة تدار بمنهجية واضحة وتمتلك مقومات قوية للتوسع الإعلاني والسوقي.';
+        verdictTitle = 'تشخيص «' + displayPageName + '»: منظومة تسويقية قوية جاهزة للتوسع وتعظيم الربحية';
+        verdictSummary = 'تعكس نتيجة (' + score + ' من 100) نضجاً واضحاً في إدارة الصفحة وفهم الجمهور. لتحقيق القفزة التالية، ينصب التركيز الاستراتيجي على تحسين محور (' + finalMetrics.weakestPillar.shortTitle + ')، وتطوير حملات متعددة المراحل، ورفع معدل التحويل من المحادثات لتعظيم العائد على الاستثمار.';
+      } else {
+        tierLabel = 'مرحلة نظام النمو المتكامل — ريادة وتموضع قوي';
+        tierBadgeClass = 'inline-block px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#20A464] text-white mb-2';
+        tierShort = 'الصفحة تعمل كنظام نمو متكامل يربط العلامة التجارية بالمبيعات والقياس.';
+        verdictTitle = 'تشخيص «' + displayPageName + '»: علامة تجارية متماسكة ونظام نمو عالي الكفاءة';
+        verdictSummary = 'بنتيجة (' + score + ' من 100)، تطبق صفحتك أفضل ممارسات التسويق الاستراتيجي من حيث وضوح التموضع، اتساق المحتوى، وإدارة التحويل. الخطوة القادمة هي الحفاظ على هذا التفوق، استكشاف شرائح سوقية جديدة، وبناء أصول تسويقية تضاعف الحصة السوقية للعلامة.';
+      }
+
+      const badgeEl = document.getElementById('report-tier-badge');
+      badgeEl.className = tierBadgeClass;
+      badgeEl.textContent = tierLabel;
+      document.getElementById('report-tier-short').textContent = tierShort;
+      document.getElementById('report-verdict-title').textContent = verdictTitle;
+      document.getElementById('report-verdict-summary').textContent = verdictSummary;
+
+      document.getElementById('report-strongest-pillar').textContent =
+        finalMetrics.strongestPillar.title + ' (' + finalMetrics.strongestPillar.scoreOutOf20 + ' من 20 — ' + finalMetrics.strongestPillar.pct + '%)';
+      document.getElementById('report-weakest-pillar').textContent =
+        finalMetrics.weakestPillar.title + ' (' + finalMetrics.weakestPillar.scoreOutOf20 + ' من 20 — ' + finalMetrics.weakestPillar.pct + '%)';
+
+      const barsContainer = document.getElementById('report-pillars-bars');
+      barsContainer.innerHTML = finalMetrics.pillarMetrics.map(function (pm) {
+        const color = pm.pct >= 75 ? '#20A464' : pm.pct >= 50 ? '#146EF5' : pm.pct >= 35 ? '#D97706' : '#DC2626';
+        return (
+          '<div>' +
+            '<div class="flex flex-wrap items-center justify-between gap-2 text-xs mb-1.5">' +
+              '<div class="flex flex-wrap items-center gap-2">' +
+                '<span class="font-en font-bold text-[#146EF5]" dir="ltr">' + pm.code + '</span>' +
+                '<span class="font-bold text-[#071A33]">' + pm.title + '</span>' +
+              '</div>' +
+              '<span class="font-en font-extrabold text-[#071A33]" dir="ltr">' + pm.scoreOutOf20 + ' / 20 (' + pm.pct + '%)</span>' +
+            '</div>' +
+            '<div class="w-full h-2.5 bg-[#F5F6F8] rounded-full overflow-hidden border border-[#E5E7EB]">' +
+              '<div class="h-full rounded-full" style="width: ' + pm.pct + '%; background-color: ' + color + ';"></div>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+
+      const detailedContainer = document.getElementById('report-detailed-pillars');
+      detailedContainer.innerHTML = PILLARS.map(function (pillar, idx) {
+        const pm = finalMetrics.pillarMetrics[idx];
+        const statusBadge = pm.pct >= 75
+          ? { text: 'نقطة قوة استراتيجية', cls: 'bg-[#20A464]/10 text-[#20A464]' }
+          : pm.pct >= 50
+            ? { text: 'أداء متوسط يحتاج تطوير', cls: 'bg-[#146EF5]/10 text-[#146EF5]' }
+            : { text: 'فجوة حرجة تتطلب تدخل أولوية', cls: 'bg-[#DC2626]/10 text-[#DC2626]' };
+
+        const priorityActions = pillar.questions.map(function (q) {
+          const ansScore = state.answers[q.id] !== undefined ? state.answers[q.id] : 1;
+          const chosenOpt = q.options.find(function (o) { return o.score === ansScore; }) || q.options[0];
+          return {
+            qTitle: q.title,
+            enTag: q.enTag,
+            score: ansScore,
+            currentLabel: chosenOpt.label,
+            action: chosenOpt.action
+          };
+        });
+
+        return (
+          '<div class="p-5 rounded-xl bg-[#F5F6F8] border border-[#E5E7EB]">' +
+            '<div class="flex flex-wrap items-center justify-between gap-3 pb-3 mb-4 border-b border-[#E5E7EB]">' +
+              '<div class="flex flex-wrap items-center gap-2.5">' +
+                '<span class="font-en text-xs font-extrabold bg-[#071A33] text-white px-2.5 py-1 rounded" dir="ltr">' + pillar.code + '</span>' +
+                '<h4 class="font-bold text-[#071A33] text-sm sm:text-base m-0">' + pillar.title + '</h4>' +
+              '</div>' +
+              '<div class="flex flex-wrap items-center gap-2">' +
+                '<span class="text-xs font-bold px-3 py-1 rounded-full ' + statusBadge.cls + '">' + statusBadge.text + '</span>' +
+                '<span class="font-en font-extrabold text-sm text-[#071A33] bg-white px-2.5 py-1 rounded border border-[#E5E7EB]" dir="ltr">' + pm.scoreOutOf20 + '/20</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
+              priorityActions.map(function (item) {
+                return (
+                  '<div class="bg-white p-4 rounded-lg border border-[#E5E7EB] flex flex-col justify-between">' +
+                    '<div>' +
+                      '<div class="flex items-center justify-between gap-2 mb-2">' +
+                        '<span class="en-badge" dir="ltr">' + item.enTag + '</span>' +
+                        '<span class="font-en text-xs font-bold ' + (item.score >= 2 ? 'text-[#20A464]' : 'text-[#D97706]') + '" dir="ltr">' + item.score + ' / 3</span>' +
+                      '</div>' +
+                      '<h5 class="text-xs font-bold text-[#071A33] mb-2">' + item.qTitle + '</h5>' +
+                      '<p class="text-[11px] text-[#667085] mb-3">الوضع الحالي: <strong class="text-[#111827]">' + item.currentLabel + '</strong></p>' +
+                    '</div>' +
+                    '<div class="pt-2.5 border-t border-[#E5E7EB] text-[11px] text-[#071A33]" style="line-height: 1.75;">' +
+                      '<span class="font-bold text-[#146EF5]">التوصية: </span>' + item.action +
+                    '</div>' +
+                  '</div>'
+                );
+              }).join('') +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+
+      const tbody = document.getElementById('report-answers-table-body');
+      const rowsHtml = [];
+      PILLARS.forEach(function (pillar, pIdx) {
+        pillar.questions.forEach(function (q, qIdx) {
+          const num = pIdx * 3 + qIdx + 1;
+          const sc = state.answers[q.id] !== undefined ? state.answers[q.id] : 1;
+          const opt = q.options.find(function (o) { return o.score === sc; }) || q.options[0];
+          const badgeCls = sc === 3
+            ? 'bg-[#20A464]/10 text-[#20A464]'
+            : sc === 2
+              ? 'bg-[#146EF5]/10 text-[#146EF5]'
+              : sc === 1
+                ? 'bg-[#D97706]/10 text-[#D97706]'
+                : 'bg-[#DC2626]/10 text-[#DC2626]';
+          const numStr = num < 10 ? '0' + num : '' + num;
+
+          rowsHtml.push(
+            '<tr>' +
+              '<td class="py-3 px-3.5 font-semibold text-[#071A33]">' +
+                '<span class="text-[11px] text-[#146EF5] block mb-1">' + numStr + ' · ' + pillar.shortTitle + '</span>' +
+                '<span class="block">' + q.title + '</span>' +
+              '</td>' +
+              '<td class="py-3 px-3.5 text-[#667085]">' +
+                '<strong class="text-[#111827] block mb-1">' + opt.label + '</strong>' +
+                '<span class="text-[11px] block">' + opt.desc + '</span>' +
+              '</td>' +
+              '<td class="py-3 px-3.5 text-center font-en font-bold" dir="ltr">' +
+                '<span class="px-2.5 py-1 rounded inline-block ' + badgeCls + '">' + sc + ' / 3</span>' +
+              '</td>' +
+              '<td class="py-3 px-3.5 text-[#071A33] font-medium">' + opt.action + '</td>' +
+            '</tr>'
+          );
+        });
+      });
+      tbody.innerHTML = rowsHtml.join('');
+
+      let selectedServiceKey = finalMetrics.weakestPillar.serviceKey;
+      if (score < 45) {
+        selectedServiceKey = 'consulting';
+      }
+      const recommendedService = SERVICES_CATALOG[selectedServiceKey] || SERVICES_CATALOG.consulting;
+
+      document.getElementById('cta-recommended-service-code').textContent = recommendedService.code;
+      document.getElementById('cta-headline').textContent = recommendedService.headline;
+      document.getElementById('cta-description').textContent = recommendedService.description;
+      document.getElementById('cta-service-bullets').innerHTML = recommendedService.bullets.map(function (b) {
+        return (
+          '<div class="flex items-start gap-2.5 bg-slate-900/70 p-3 rounded-lg border border-slate-800">' +
+            '<span class="text-[#146EF5] font-bold">✓</span>' +
+            '<span style="line-height: 1.7;">' + b + '</span>' +
+          '</div>'
+        );
+      }).join('');
+
+      const waLines = [
+        'مرحباً أستاذ حسن علي،',
+        'قمت بإجراء التشخيص الاستراتيجي لصفحة الفيسبوك عبر أداة التحليل الخاصة بك:',
+        '• اسم الصفحة / العلامة: ' + displayPageName,
+        '• القطاع: ' + state.industry
+      ];
+      if (state.pageUrl) waLines.push('• رابط الصفحة: ' + state.pageUrl);
+      waLines.push(
+        '• السكور الكلي للصفحة: ' + score + ' من 100 (' + tierLabel + ')',
+        '• المحور الأضعف ذو الأولوية: ' + finalMetrics.weakestPillar.title + ' (' + finalMetrics.weakestPillar.scoreOutOf20 + '/20)',
+        '• التحدي الحالي: ' + state.primaryGoal,
+        '• الخدمة المقترحة في التقرير: ' + recommendedService.name,
+        '',
+        'أرغب في حجز استشارة معك لمناقشة خطة العمل المناسبة لصفحتنا.'
+      );
+      const waMessage = waLines.join('\n');
+
+      const waUrl = 'https://wa.me/201221359590?text=' + encodeURIComponent(waMessage);
+      const emailSubject = 'طلب استشارة تسويق استراتيجي — نتائج تحليل صفحة ' + displayPageName + ' (' + score + '/100)';
+      const emailUrl = 'mailto:hassan.ali.elzayat@gmail.com?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(waMessage);
+
+      document.getElementById('cta-whatsapp-btn').setAttribute('href', waUrl);
+      document.getElementById('cta-email-btn').setAttribute('href', emailUrl);
+
+      window._currentAuditSummaryText = waMessage;
+
+      const resultsSec = document.getElementById('results-section');
+      const workspaceSec = document.getElementById('audit-workspace');
+      const methodSec = document.getElementById('methodology-section');
+      const navResLink = document.getElementById('nav-results-link');
+      const tabQ = document.getElementById('tab-view-questions');
+      const tabR = document.getElementById('tab-view-results');
+      const tabScoreBadge = document.getElementById('tab-results-score-badge');
+
+      if (tabScoreBadge) {
+        tabScoreBadge.textContent = score + ' / 100';
+      }
+      if (resultsSec) {
+        resultsSec.classList.remove('hidden');
+      }
+      if (workspaceSec) {
+        workspaceSec.classList.add('hidden');
+      }
+      if (methodSec) {
+        methodSec.classList.add('hidden');
+      }
+      if (navResLink) {
+        navResLink.classList.remove('hidden');
+      }
+      if (tabQ && tabR) {
+        tabQ.className = 'btn-secondary text-xs sm:text-sm py-2 px-4';
+        tabR.className = 'btn-green text-xs sm:text-sm py-2 px-4';
+      }
+      const switcherEl = document.getElementById('view-switcher-bar');
+      if (switcherEl) {
+        switcherEl.scrollIntoView({ behavior: 'auto', block: 'start' });
+      } else if (resultsSec) {
+        resultsSec.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    }
+
+    async function downloadReportAsPdf() {
+      const reportEl = document.getElementById('pdf-report-sheet');
+      const btnText = document.getElementById('btn-download-pdf-text');
+      if (!reportEl) return;
+
+      const cleanPageName = (state.pageName || 'Facebook-Page').replace(/[^a-zA-Z0-9\u0600-\u06FF\s-_]/g, '').trim().replace(/\s+/g, '-');
+      const filename = 'Hassan-Ali-Audit-Report-' + cleanPageName + '.pdf';
+
+      if (typeof window.html2pdf === 'undefined') {
+        showToast('جاري فتح نافذة حفظ التقرير كـ PDF...', false);
+        window.print();
+        return;
+      }
+
+      try {
+        if (btnText) btnText.textContent = 'جاري تجهيز ملف الـ PDF...';
+        showToast('جاري توليد تقرير الـ PDF الشامل بجودة عالية...', false);
+
+        const opt = {
+          margin: [8, 8, 8, 8],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            letterRendering: false,
+            backgroundColor: '#FFFFFF',
+            scrollY: 0
+          },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        await window.html2pdf().set(opt).from(reportEl).save();
+        if (btnText) btnText.textContent = 'تحميل التقرير الشامل (PDF)';
+        showToast('تم تحميل تقرير الـ PDF بنجاح!', false);
+      } catch (err) {
+        if (btnText) btnText.textContent = 'تحميل التقرير الشامل (PDF)';
+        showToast('تم فتح نافذة الطباعة لحفظ التقرير كـ PDF مباشر.', false);
+        window.print();
+      }
+    }
+
+    function loadDemoAuditData() {
+      document.getElementById('input-page-name').value = 'شركة ريفيرا للتطوير العقاري';
+      document.getElementById('input-client-name').value = 'م. طارق المنشاوي — المدير التنفيذي';
+      document.getElementById('input-industry').value = 'التطوير العقاري والمقاولات';
+      document.getElementById('input-primary-goal').value = 'تأتينا رسائل كثيرة ولكن نسبة التحويل إلى مبيعات ضعيفة';
+      document.getElementById('input-page-url').value = 'https://facebook.com/rivieraproperties.eg';
+
+      state.answers = {
+        q1: 2, q2: 3, q3: 2,
+        q4: 1, q5: 2, q6: 2,
+        q7: 2, q8: 2, q9: 2,
+        q10: 1, q11: 1, q12: 1,
+        q13: 1, q14: 1, q15: 2
+      };
+      renderWorkspace();
+      buildDiagnosticReport();
+      showToast('تم ملء نموذج تجريبي وإصدار التقرير الاستراتيجي المخصص!', false);
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('تم نسخ ملخص التشخيص بنجاح!', false);
+      } catch (e) {
+        showToast('تعذر النسخ التلقائي، يمكنك استخدام زر واتساب مباشرة.', true);
+      }
+      document.body.removeChild(ta);
+    }
+
+    function initApp() {
+      renderWorkspace();
+
+      const prevBtn = document.getElementById('btn-prev-pillar');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          if (state.activePillarIndex > 0) {
+            state.activePillarIndex--;
+            renderWorkspace();
+            document.getElementById('audit-workspace').scrollIntoView({ behavior: 'auto', block: 'start' });
+          }
+        });
+      }
+
+      const nextBtn = document.getElementById('btn-next-pillar');
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          if (state.activePillarIndex < PILLARS.length - 1) {
+            state.activePillarIndex++;
+            renderWorkspace();
+            document.getElementById('audit-workspace').scrollIntoView({ behavior: 'auto', block: 'start' });
+          }
+        });
+      }
+
+      const toggleBtn = document.getElementById('btn-toggle-view-mode');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+          state.showAllQuestions = !state.showAllQuestions;
+          updateToggleViewButtonText();
+          renderWorkspace();
+        });
+      }
+
+      const resetBtn = document.getElementById('btn-reset-audit');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          state.answers = {};
+          state.activePillarIndex = 0;
+          document.getElementById('results-section').classList.add('hidden');
+          document.getElementById('nav-results-link').classList.add('hidden');
+          renderWorkspace();
+          showToast('تمت إعادة تعيين الإجابات للبدء من جديد.', false);
+        });
+      }
+
+      const genBtn = document.getElementById('btn-generate-report');
+      if (genBtn) genBtn.addEventListener('click', buildDiagnosticReport);
+
+      const sideResBtn = document.getElementById('btn-sidebar-show-results');
+      if (sideResBtn) sideResBtn.addEventListener('click', buildDiagnosticReport);
+
+      const demoBtn1 = document.getElementById('btn-demo-fill');
+      if (demoBtn1) demoBtn1.addEventListener('click', loadDemoAuditData);
+
+      const demoBtn2 = document.getElementById('btn-hero-demo');
+      if (demoBtn2) demoBtn2.addEventListener('click', loadDemoAuditData);
+
+      const dlPdfBtn = document.getElementById('btn-download-pdf');
+      if (dlPdfBtn) dlPdfBtn.addEventListener('click', downloadReportAsPdf);
+
+      const prtPdfBtn = document.getElementById('btn-print-pdf');
+      if (prtPdfBtn) prtPdfBtn.addEventListener('click', function () { window.print(); });
+
+      function showQuestionsView() {
+        const resultsSec = document.getElementById('results-section');
+        const workspaceSec = document.getElementById('audit-workspace');
+        const methodSec = document.getElementById('methodology-section');
+        const tabQ = document.getElementById('tab-view-questions');
+        const tabR = document.getElementById('tab-view-results');
+        if (workspaceSec) workspaceSec.classList.remove('hidden');
+        if (methodSec) methodSec.classList.remove('hidden');
+        if (resultsSec) resultsSec.classList.add('hidden');
+        if (tabQ && tabR) {
+          tabQ.className = 'btn-primary text-xs sm:text-sm py-2 px-4';
+          tabR.className = 'btn-secondary text-xs sm:text-sm py-2 px-4';
+        }
+        const switcherEl = document.getElementById('view-switcher-bar');
+        if (switcherEl) switcherEl.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+
+      const editBtn = document.getElementById('btn-edit-answers');
+      if (editBtn) {
+        editBtn.addEventListener('click', showQuestionsView);
+      }
+
+      const tabQBtn = document.getElementById('tab-view-questions');
+      if (tabQBtn) {
+        tabQBtn.addEventListener('click', showQuestionsView);
+      }
+
+      const tabRBtn = document.getElementById('tab-view-results');
+      if (tabRBtn) {
+        tabRBtn.addEventListener('click', buildDiagnosticReport);
+      }
+
+      const barDemoBtn = document.getElementById('btn-bar-demo');
+      if (barDemoBtn) {
+        barDemoBtn.addEventListener('click', loadDemoAuditData);
+      }
+
+      const navResLinkEl = document.getElementById('nav-results-link');
+      if (navResLinkEl) {
+        navResLinkEl.addEventListener('click', function (e) {
+          e.preventDefault();
+          buildDiagnosticReport();
+        });
+      }
+
+      const copyBtn = document.getElementById('btn-copy-summary');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          const textToCopy = window._currentAuditSummaryText || '';
+          if (!textToCopy) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(textToCopy).then(function () {
+              showToast('تم نسخ ملخص التشخيص! يمكنك لصقه مباشرة في محادثتك مع أ. حسن علي.', false);
+            }).catch(function () {
+              fallbackCopy(textToCopy);
+            });
+          } else {
+            fallbackCopy(textToCopy);
+          }
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  })();
+  </script>
+</body>
+</html>
